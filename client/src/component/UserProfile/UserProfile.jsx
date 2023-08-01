@@ -11,6 +11,7 @@ const userProfile = () => {
     surname: "",
     email: "",
     phone: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({
@@ -18,6 +19,7 @@ const userProfile = () => {
     surname: "Apellido requerido",
     email: "Email requerido",
     phone: "",
+    password: "Password requerida",
   });
 
   const disable = () => {
@@ -55,6 +57,13 @@ const userProfile = () => {
 
       return;
     }
+    if (name === "password") {
+    
+
+    if(input.password !== "") setErrors({...errors, password:""});
+    else setErrors({...errors, password:"Contraseña requerida"});
+
+
   };
 
   const handleSubmit = (e) => {
