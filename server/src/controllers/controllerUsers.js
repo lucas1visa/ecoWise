@@ -23,18 +23,18 @@ const crearUsers = async (name, email, password) => {
     return null;
   }
 };
- const update = async (id, password ) => {
-     try {
-         const passwordUpdate = await User.update(
-             { password: password },
-             {
-               where: {
-                 id: id,
-               },
-             }
-           )
-     } catch (error) {
-       throw error; 
-    }
-   };
+const update = async (id, password) => {
+  try {
+    const passwordUpdate = await User.update(
+      { password: password },
+      {
+        where: {
+          id: id,
+        },
+      }
+    )
+  } catch (error) {
+    throw error;
+  }
+};
 module.exports = { users, crearUsers, update };
