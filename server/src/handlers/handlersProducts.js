@@ -16,7 +16,7 @@ const postProducts = async (req, res) => {
         const crearProducto = crearProducts(name, description, price, quantityAvailable, category)
         res.status(200).send("Se Registro Correctamente")
     } catch (error) {
-
+        res.status(400).send("Error: " + error.message)
     }
 }
 
