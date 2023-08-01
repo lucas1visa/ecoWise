@@ -1,6 +1,7 @@
 const inicialState = {};
 
 const reducer = (state = inicialState, actions) => {
+  console.log(actions.payload)
   switch (actions.type) {
     default:
       return {
@@ -8,3 +9,4 @@ const reducer = (state = inicialState, actions) => {
       };
   }
 };
+export default reducer
