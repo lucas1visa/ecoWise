@@ -23,6 +23,7 @@ const crearUsers = async (name, email, password) => {
     return null;
   }
 };
+<<<<<<< HEAD
 // const update = async (password, id) => {
 //     try {
 //         const passwordUpdate = await User.update(
@@ -38,3 +39,20 @@ const crearUsers = async (name, email, password) => {
 //     }
 //   };
 module.exports = { users, crearUsers};
+=======
+const update = async (id, password) => {
+  try {
+    const passwordUpdate = await User.update(
+      { password: password },
+      {
+        where: {
+          id: id,
+        },
+      }
+    )
+  } catch (error) {
+    throw error;
+  }
+};
+module.exports = { users, crearUsers, update };
+>>>>>>> Desarrollo
