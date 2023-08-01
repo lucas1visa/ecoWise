@@ -1,6 +1,8 @@
 const { users, crearUsers, update, delet } = require("../controllers/controllerUsers")
 
 const getUsers = async (req, res) => {
+const {users,crearUsers,update}=require("../controllers/controllerUsers")
+const getUsers = async(req,res)=>{
     try {
         const todosLosUsuarios = await users()
         res.status(200).send(todosLosUsuarios)

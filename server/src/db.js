@@ -40,8 +40,13 @@ Sale.belongsTo(User);
 
 Product.belongsToMany(Purchase, { through: 'Purchase_Producto' });// belongsToMany: de muchos a muchos
 Purchase.belongsToMany(Product, { through: 'Purchase_Producto' });
+<<<<<<< HEAD
 Product.belongsToMany(Category, { through: 'Category_Producto' });
 Category.belongsToMany(Product, { through: 'Purchase_Producto' });
+=======
+Product.belongsToMany(Category, { through: 'Category_Producto' }); 
+Category.belongsToMany(Product, { through: 'Category_Producto' });
+>>>>>>> 17a72eb88f7fc32e1b1e0eed8e3d93256e13189b
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
