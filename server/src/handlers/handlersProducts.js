@@ -1,4 +1,4 @@
-const { products, crearProducts, updateProducts } = require("../controllers/controllerProduct")
+const { products, crearProducts, updateProducts, deletP } = require("../controllers/controllerProduct")
 
 
 const getProducts = async (req, res) => {
@@ -35,8 +35,8 @@ const putProducts = async (req, res) => {
 }
 
 const deleteProduct = async (req, res) => {
-    const {id} = req.params
-    const deleteProducto = await deleteP(id)
+    const{ id }= req.params
+    const deleteProducto = await deletP(id)
     try {
         res.status(200).send('Producto borrado con exito')
     } catch (error) {

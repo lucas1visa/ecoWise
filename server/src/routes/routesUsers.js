@@ -4,5 +4,5 @@ const  routesUsers = Router();
 routesUsers.get("/" , getUsers)
 routesUsers.post("/" , postUsers)
 routesUsers.put("/update", putUsers)
-routesUsers.delete("/delete", deleteUsers)
+routesUsers.delete("/delete/:id", deleteUsers)
 module.exports = routesUsers;

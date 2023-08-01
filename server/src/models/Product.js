@@ -4,9 +4,9 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('Product', {
   id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey:true,
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey:true,
   },
   name: {
     type: DataTypes.STRING,
@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
     allowNull:false
   },
   image:{
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false
   }
 

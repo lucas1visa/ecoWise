@@ -4,6 +4,6 @@ const  routesProducts = Router();
 routesProducts.get("/" ,getProducts)
 routesProducts.post("/", postProducts)
 routesProducts.put("/update", putProducts)
-routesProducts.delete("/delete", deleteProduct)
+routesProducts.delete("/delete/:id", deleteProduct)
 
 module.exports = routesProducts;
