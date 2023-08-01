@@ -10,15 +10,15 @@ const products = async () => {
     }
 };
 
-const crearProducts = async (name, description, price, quantityAvailable, category) => {
+const crearProducts = async (name, description, price, quantityAvailable, category, image) => {
     try {
         const nuevoProductos = await Product.create({
             name,
             description,
             price,
             quantityAvailable,
-            category
-
+            category,
+            image,
         });
 
         return nuevoProductos;
@@ -28,14 +28,14 @@ const crearProducts = async (name, description, price, quantityAvailable, catego
     }
 };
 
-const updateProducts = async (id, description, price, quantityAvailable) => {
+const updateProducts = async (id, description, price, quantityAvailable, image) => {
     try {
         const fullUpdate = await Product.update(
             {
                 description: description,
                 price: price,
                 quantityAvailable: quantityAvailable,
-
+                image: image,
             },
             {
                 where: {

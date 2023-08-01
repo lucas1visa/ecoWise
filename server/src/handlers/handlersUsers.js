@@ -1,10 +1,11 @@
-const { users, crearUsers, update } = require("../controllers/controllerUsers")
+const { users, crearUsers, update, delet } = require("../controllers/controllerUsers")
+
 const getUsers = async (req, res) => {
     try {
-        todosLosUsuarios = await users()
+        const todosLosUsuarios = await users()
         res.status(200).send(todosLosUsuarios)
     } catch (error) {
-        res.status(400).send(error)
+        res.status(500).send(error)
     }
 }
 
@@ -14,7 +15,7 @@ const postUsers = async (req, res) => {
         const crearUsuario = crearUsers(name, email, password)
         res.status(200).send("Se Registro Correctamente")
     } catch (error) {
-
+        res.status(500).send("Error: " + error.message)
     }
 }
 
@@ -29,4 +30,13 @@ const putUsers = async (req, res) => {
     }
 };
 
-module.exports = { getUsers, postUsers, putUsers }
+const deleteUsers = async (req, res) => {
+    const {id} = req.params;
+    const deleteUsers = await delet(id);
+    try {
+        res.status(200).send(`Se elimino el usuario con id: ${id} con exito`)
+    } catch (error) {
+        res.status(500).send('Ocurrio un error al querer eliminar un usuario')
+    }
+}
+module.exports = { getUsers, postUsers, putUsers, deleteUsers }
