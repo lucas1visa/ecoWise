@@ -40,8 +40,8 @@ Sale.belongsTo(User);
 
 Product.belongsToMany(Purchase, { through: 'Purchase_Producto' });
 Purchase.belongsToMany(Product, { through: 'Purchase_Producto' });
-Product.belongsToMany(Category, { through: 'Category_Producto' })
-Category.belongsToMany(Product, { through: 'Purchase_Producto' })
+Product.belongsToMany(Category, { through: 'Category_Producto' }); 
+Category.belongsToMany(Product, { through: 'Category_Producto' });
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
