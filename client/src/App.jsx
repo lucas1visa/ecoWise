@@ -10,6 +10,7 @@ import { getProducts } from './redux/actions';
 import Landing from './component/Landing/Landing';
 import  NavbarComponent  from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
+import UserProfile from './component/UserProfile/UserProfile';
 
 function App() {
   const { pathname } = useLocation();
@@ -23,6 +24,7 @@ useEffect(()=>{
     <Routes>
       <Route path='/' element={<Landing/>} />
       <Route path="/home" element={<Home/>} />
+      <Route path="/account/register/" element={<UserProfile/>} />
       </Routes>
       <div>{pathname !== '/' && <Footer/>}</div>
     </>

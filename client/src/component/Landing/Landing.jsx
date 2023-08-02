@@ -16,7 +16,7 @@ const Landing = () => {
                 Esta app nace con el propósito de fomentar el cuidado del medio ambiente. Nuestro objetivo es lograr reemplazar la utilización del plástico de un solo uso comercializando productos con materiales alternativos sustentables. Desde EcoWise consideramos que cambiar hábitos cotidianos, es generar cambios para un futuro sostenible, logrando “contagiar” a otras personas para impulsar un movimiento mayor.
               </p>
               <Link to="/home" className="btn btn-primary mr-3">Log in</Link>
-              <Link to="/" className="btn btn-secondary">Sign in</Link>
+              <Link to="/account/register/" className="btn btn-secondary">Sign in</Link>
             </div>
           </div>
           <div className="col-md-6">

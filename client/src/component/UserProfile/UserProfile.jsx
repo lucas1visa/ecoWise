@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./userProfile.css";
+// import "./userProfile.css";
 import { postUser } from "../../redux/actions/index";
 
 const UserProfile = () => {
