@@ -16,7 +16,6 @@ const UserProfile = () => {
     password: "",
     confirmPassword: "",
   });
-
   // Estado local para almacenar los mensajes de error de validación
   const [errors, setErrors] = useState({
     name: "Nombre requerido",
