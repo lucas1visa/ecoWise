@@ -3,6 +3,11 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define('Product', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey:true,
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -23,7 +28,12 @@ module.exports = (sequelize) => {
   category:{
     type: DataTypes.STRING,
     allowNull:false
+  },
+  image:{
+    type: DataTypes.TEXT,
+    allowNull: false
   }
+
 })};
 
 
