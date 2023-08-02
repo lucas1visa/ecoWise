@@ -10,15 +10,28 @@ const getProducts = async (req, res) => {
     }
 }
 
+
+
 const postProducts = async (req, res) => {
-    const { name, description, price, quantityAvailable, category, image } = req.body
+    const productsArray = req.body; // El cuerpo de la solicitud debe ser un arreglo de objetos
     try {
-        const crearProducto = crearProducts(name, description, price, quantityAvailable, category, image)
-        res.status(200).send("Se Registro Correctamente")
+        // Iterar sobre el arreglo de productos y registrar cada uno utilizando crearProducts
+        for (const productData of productsArray) {
+            await crearProducts(
+                productData.name,
+                productData.description,
+                productData.price,
+                productData.quantityAvailable,
+                productData.category,
+                productData.image
+            );
+        }
+        res.status(200).send("Se registraron correctamente los productos.");
     } catch (error) {
-        res.status(500).send("Error: " + error.message)
+        console.error("Error al registrar productos:", error);
+        res.status(500).send("Error al registrar productos: " + error.message);
     }
-}
+};
 
 
 const putProducts = async (req, res) => {
