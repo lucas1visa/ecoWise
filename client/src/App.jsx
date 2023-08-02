@@ -8,26 +8,31 @@ axios.defaults.baseURL = "http://localhost:3001";
 import Home from './component/Home/Home';
 import { getProducts } from './redux/actions';
 import Landing from './component/Landing/Landing';
-import  NavbarComponent  from './component/Navbar/Navbar';
+import NavbarComponent from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
 import UserProfile from './component/UserProfile/UserProfile';
 
 function App() {
   const { pathname } = useLocation();
-  const dispatch = useDispatch()
-useEffect(()=>{
- dispatch(getProducts())
-},[])
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+
   return (
-    <>
-      <div>{pathname !== '/' && <NavbarComponent/>}</div>
-    <Routes>
-      <Route path='/' element={<Landing/>} />
-      <Route path="/home" element={<Home/>} />
-      <Route path="/account/register/" element={<UserProfile/>} />
-      </Routes>
-      <div>{pathname !== '/' && <Footer/>}</div>
-    </>
-  )
+    <div className="App-container">
+      <div className="container">
+        <div>{pathname !== '/' && <NavbarComponent />}</div>
+        <Routes>
+          <Route path='/' element={<Landing />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/account/register/" element={<UserProfile />} />
+        </Routes>
+        <div>{pathname !== '/' && <Footer />}</div>
+      </div>
+    </div>
+  );
 }
-export default App
+
+export default App;
