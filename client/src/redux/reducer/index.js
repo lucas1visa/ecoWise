@@ -1,4 +1,4 @@
-import {GETPRODUCTS,POSTPRODUCTS,POSTUSER} from "../actions/Types"
+import {GETPRODUCTS,POSTPRODUCTS,POSTUSER,} from "../actions/Types"
 const inicialState = {
   products:[],
 };

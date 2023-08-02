@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GETUSERS,GETPRODUCTS,POSTPRODUCT,POSTUSER} from "./Types"
+import {GETUSERS,GETPRODUCTS,POSTPRODUCTS,POSTUSER} from "./Types"
 
 export const getUsers = ()=>{
     return async (dispatch)=>{
@@ -21,7 +21,7 @@ export const getProducts = ()=>{
 export const postProduct = (product)=>{
     return async (dispatch)=>{
         const res = await axios.post("/products",product)
-        dispatch({type:POSTPRODUCT, payload:res})
+        dispatch({type:POSTPRODUCTS, payload:res})
     }
 }
 
