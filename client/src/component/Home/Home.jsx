@@ -1,12 +1,35 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+
 const Home = () => {
-    return (
-    <div>
-    <Navbar/>
-    {/* <Footer/> */}
-    </div>  );
-}
- 
+  const products = useSelector((state) => state.products);
+  console.log(products);
+  return (
+    <Container>
+      <Row>
+        {products.map((product) => (
+          <Col key={product.id} md={4}>
+            <Card className="mb-4">
+              <Link to={`/products/${product.id}`}>
+                <Card.Img variant="top" src={product.image} alt={product.name} />
+              </Link>
+              <Card.Body>
+                <Card.Title>{product.name}</Card.Title>
+                <Card.Text>{product.description}</Card.Text>
+                <Card.Text>Precio: ${product.price}</Card.Text>
+                <Link to={`/products/${product.id}`}>
+                  <Button variant="primary">Ver detalles</Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
+  );
+};
+
 export default Home;
+

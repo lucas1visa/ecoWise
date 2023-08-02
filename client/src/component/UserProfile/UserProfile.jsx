@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./userProfile.css";
+// import "./userProfile.css";
 import { postUser } from "../../redux/actions/index";
 
 const UserProfile = () => {
@@ -51,7 +51,8 @@ const UserProfile = () => {
     const isContainsUppercase = /^(?=.*[A-Z]).*$/;
     const isContainsLowercase = /^(?=.*[a-z]).*$/;
     const isContainsNumber = /^(?=.*[0-9]).*$/;
-    const isContainsSymbol = /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
+    const isContainsSymbol =
+      /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
     const isValidLength = /^.{10,16}$/;
 
     let errorMessage = "";
@@ -61,11 +62,13 @@ const UserProfile = () => {
     }
 
     if (!isContainsUppercase.test(input.password)) {
-      errorMessage += "La contraseña debe contener al menos una letra mayúscula. ";
+      errorMessage +=
+        "La contraseña debe contener al menos una letra mayúscula. ";
     }
 
     if (!isContainsLowercase.test(input.password)) {
-      errorMessage += "La contraseña debe contener al menos una letra minúscula. ";
+      errorMessage +=
+        "La contraseña debe contener al menos una letra minúscula. ";
     }
 
     if (!isContainsNumber.test(input.password)) {
@@ -73,7 +76,8 @@ const UserProfile = () => {
     }
 
     if (!isContainsSymbol.test(input.password)) {
-      errorMessage += "La contraseña debe contener al menos un símbolo especial. ";
+      errorMessage +=
+        "La contraseña debe contener al menos un símbolo especial. ";
     }
 
     if (!isValidLength.test(input.password)) {
