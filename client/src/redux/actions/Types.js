@@ -1,1 +1,4 @@
 export const GETUSERS = "GETUSERS"
+export const GETPRODUCTS = "GETPRODUCTS"
+export const POSTPRODUCTS = "POSTPRODUCTS"
+export const POSTUSER= "POSTUSER"
