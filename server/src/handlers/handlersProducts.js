@@ -1,29 +1,29 @@
-const { products, crearProducts, updateProducts } = require("../controllers/controllerProduct")
+const { products, crearProducts, updateProducts, deletP, searchProductByName, searchProductById } = require("../controllers/controllerProduct")
 
 
 const getProducts = async (req, res) => {
     try {
-        todosLosProductos = await products()
+        const todosLosProductos = await products()
         res.status(200).send(todosLosProductos)
     } catch (error) {
-        res.status(400).send(error)
+        res.status(500).send(error)
     }
 }
 
 const postProducts = async (req, res) => {
-    const { name, description, price, quantityAvailable, category } = req.body
+    const { name, description, price, quantityAvailable, category, image } = req.body
     try {
-        const crearProducto = crearProducts(name, description, price, quantityAvailable, category)
+        const crearProducto = crearProducts(name, description, price, quantityAvailable, category, image)
         res.status(200).send("Se Registro Correctamente")
     } catch (error) {
-        res.status(400).send("Error: " + error.message)
+        res.status(500).send("Error: " + error.message)
     }
 }
 
 
 const putProducts = async (req, res) => {
-    const { description, price, quantityAvailable, id } = req.body;
-    const updateProductos = await updateProducts(id, description, price, quantityAvailable)
+    const { description, price, quantityAvailable, id, image } = req.body;
+    const updateProductos = await updateProducts(id, description, price, quantityAvailable, image)
 
     try {
         res.status(200).send("Producto actualizado correctamente")
@@ -32,8 +32,53 @@ const putProducts = async (req, res) => {
         res.status(500).send("Hubo un error al actualizar el producto")
     }
 
+}
 
+const deleteProduct = async (req, res) => {
+    const { id } = req.params
+    const deleteProducto = await deletP(id)
+    try {
+        res.status(200).send('Producto borrado con exito')
+    } catch (error) {
+        res.status(500).send('Error: ' + error.message)
+    }
+}
+
+const getProductByName = async (req, res) => {
+    try {
+        const { name } = req.query;
+
+        const results = name ? await searchProductByName(name) : await getProducts();
+
+        res.status(200).json(results);
+
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+
+    }
+}
+
+const getProductById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const results = id ? await searchProductById(id) : await getProducts();
+
+        res.status(200).json(results);
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 }
 
 
-module.exports = { getProducts, postProducts, putProducts }
+
+
+module.exports = {
+    getProducts,
+    postProducts,
+    putProducts,
+    deleteProduct,
+    getProductByName,
+    getProductById
+}

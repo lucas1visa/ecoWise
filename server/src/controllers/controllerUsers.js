@@ -37,4 +37,21 @@ const update = async (id, password) => {
     throw error;
   }
 };
-module.exports = { users, crearUsers, update };
+
+const delet = async (id) => {
+  
+  try {
+            const getUsers = await User.findByPk(id);
+            
+            if( getUsers){
+                getUsers.destroy();
+                return "Deleted Users";
+              } else {
+                throw Error("Users not found")
+              } 
+  } catch (error) {
+      throw error;
+  }
+}
+
+module.exports = { users, crearUsers, update, delet };

@@ -30,18 +30,18 @@ sequelize.models = Object.fromEntries(capsEntries);// Convertimos las entradas m
 
 const { User, Sale, Product, Purchase , Category} = sequelize.models;// Obtenemos los modelos de la base de datos (Country y Activity) a través de la instancia de Sequelize "sequelize"
 
-User.hasMany(Product);
+User.hasMany(Product);// hasMany: de uno a muchos
 User.hasMany(Purchase);
 User.hasMany(Sale);
 
-Product.belongsTo(User);
+Product.belongsTo(User);// belongsT: de uno a uno
 Purchase.belongsTo(User);
 Sale.belongsTo(User);
 
-Product.belongsToMany(Purchase, { through: 'Purchase_Producto' });
+Product.belongsToMany(Purchase, { through: 'Purchase_Producto' });// belongsToMany: de muchos a muchos
 Purchase.belongsToMany(Product, { through: 'Purchase_Producto' });
-Product.belongsToMany(Category, { through: 'Category_Producto' }); 
-Category.belongsToMany(Product, { through: 'Category_Producto' });
+Product.belongsToMany(Category, { through: 'Category_Producto' });
+Category.belongsToMany(Product, { through: 'Purchase_Producto' });
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
