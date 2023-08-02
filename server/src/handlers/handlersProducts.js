@@ -1,4 +1,4 @@
-const { products, crearProducts, updateProducts, deletP } = require("../controllers/controllerProduct")
+const { products, crearProducts, updateProducts, deletP, searchProductByName, searchProductById } = require("../controllers/controllerProduct")
 
 
 const getProducts = async (req, res) => {
@@ -35,7 +35,7 @@ const putProducts = async (req, res) => {
 }
 
 const deleteProduct = async (req, res) => {
-    const{ id }= req.params
+    const { id } = req.params
     const deleteProducto = await deletP(id)
     try {
         res.status(200).send('Producto borrado con exito')
@@ -44,5 +44,41 @@ const deleteProduct = async (req, res) => {
     }
 }
 
+const getProductByName = async (req, res) => {
+    try {
+        const { name } = req.query;
 
-module.exports = { getProducts, postProducts, putProducts, deleteProduct }
+        const results = name ? await searchProductByName(name) : await getProducts();
+
+        res.status(200).json(results);
+
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+
+    }
+}
+
+const getProductById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const results = id ? await searchProductById(id) : await getProducts();
+
+        res.status(200).json(results);
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
+
+
+
+module.exports = {
+    getProducts,
+    postProducts,
+    putProducts,
+    deleteProduct,
+    getProductByName,
+    getProductById
+}

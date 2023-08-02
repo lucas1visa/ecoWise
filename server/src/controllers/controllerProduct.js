@@ -76,4 +76,23 @@ const deletP = async (id) => {
   }
 };
 
-module.exports = { products, crearProducts, updateProducts, deletP };
+const searchProductByName = async (name) => {
+  const findProduct = await Product.findAll({ where: { name: name } })
+  return findProduct;
+}
+
+const searchProductById = async (id) => {
+
+  const findProductId = await Product.findAll({ where: { id: id } })
+  return findProductId
+}
+
+
+module.exports = {
+  products,
+  crearProducts,
+  updateProducts,
+  deletP,
+  searchProductByName,
+  searchProductById
+};
