@@ -1,3 +1,4 @@
+const { async } = require("rxjs");
 const { Product } = require("../db");
 
 const products = async () => {
@@ -94,5 +95,5 @@ module.exports = {
   updateProducts,
   deletP,
   searchProductByName,
-  searchProductById
+  searchProductById,
 };
