@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFav, addToCart, getId } from "../../redux/actions/index";
+import {  addToCart, getId } from "../../redux/actions/index";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
@@ -8,20 +8,28 @@ const ProductDetail = () => {
   const { id } = useParams();
 
   const product = useSelector((state) => state.products);
+  console.log(product)
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
 
   useEffect(() => {
     dispatch(getId(id));
+    console.log(getId)
   }, [dispatch, id]);
 
-  const handleAddToFavorites = () => {
-    dispatch(addFav(product.id));
-  };
+
 
   const handleAddToCart = () => {
     dispatch(addToCart(product.id, quantity));
   };
+
+  const handleAddToFavorites = () => {
+    if (!favoriteProducts.find(favProduct => favProduct.id === product.id)) {
+      setFavoriteProducts([...favoriteProducts, product]);
+    }
+  };
+ 
 
   return (
     <div>
