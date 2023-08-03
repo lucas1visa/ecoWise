@@ -9,7 +9,7 @@ const Home = () => {
   const products = useSelector((state) => state.products);
   const user = {email: "visalucas558@gmail.com",name:"lucas julian visa", surname:"lucasVisa"}
   return (
-    <Container className='container'>
+    <Container className='container-xl'>
       <Row>
         {products.map((product) => (
           <Col key={product.id} md={4}>
