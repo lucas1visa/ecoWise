@@ -42,21 +42,17 @@ export const postUser = (user) => {
 };
 
 export function getId(id) {
-
-  return async function (dispatch) {
-    try {
-      let json = await axios.get(`/products/search/${id}`);
-      console.log(json.data);
-      return dispatch({
-        type: GET_ID,
-        payload: json.data
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
+  return async (dispatch) => {
+    const { data } = await axios.get(`/products/search/${id}`);
+    dispatch({ type: GET_ID, payload: data });
+    console.log(data)
+  };
 }
+
+ 
+
+
+
 
 export function addFav(product) {
   return {

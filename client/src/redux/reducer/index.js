@@ -25,23 +25,15 @@ const reducer = (state = inicialState, actions) => {
         products: actions.payload,
       };
 
-      case GET_ID: {
-        return {
-          ...state,
-          detail: actions.payload,
-        };
-      }
-
-    case ADD_FAV:
-      if (
-        state.favorites.find((product) => product.id === actions.payload.id)
-      ) {
-        return state;
-      }
-
+    case GET_ID:
       return {
         ...state,
+        detail: actions.payload,
+      };
 
+    case ADD_FAV:
+      return {
+        ...state,
         favorites: [...state.favorites, actions.payload],
       };
 
