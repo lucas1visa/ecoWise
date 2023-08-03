@@ -17,6 +17,9 @@ const Landing = () => {
               </p>
               <Link to="/home" className="btn btn-primary mr-3">Log in</Link>
               <Link to="/account/register/" className="btn btn-secondary">Sign in</Link>
+              <div>
+              <Link to="/home" className='"btn btn-primary mr-3'>Invitado</Link>
+              </div>
             </div>
           </div>
           <div className="col-md-6">

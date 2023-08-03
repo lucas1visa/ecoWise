@@ -3,12 +3,13 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import MPButton from '../MPButton/MPButton';
+import styles from "./home.module.css"
 
 const Home = () => {
   const products = useSelector((state) => state.products);
   const user = {email: "visalucas558@gmail.com",name:"lucas julian visa", surname:"lucasVisa"}
   return (
-    <Container>
+    <Container className='container'>
       <Row>
         {products.map((product) => (
           <Col key={product.id} md={4}>
