@@ -9,11 +9,13 @@ const users = async () => {
   }
 };
 
-const crearUsers = async (name, email, password) => {
+const crearUsers = async (name, surname, email, phone, password) => {
   try {
     const nuevoUsuario = await User.create({
       name,
+      surname,
       email,
+      phone,
       password,
     });
 
