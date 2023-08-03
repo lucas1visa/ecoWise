@@ -8,7 +8,7 @@ const handlerMercadopago=(req, res)=> {
   });
 
   // Obtenemos los datos necesarios de la solicitud (req)
-  const { user, turno } = req.body; // o cualquier otra información necesaria
+  const { user, product } = req.body; // o cualquier otra información necesaria
 
   // Creamos la "Preference" (Preferencia), esta es la configuración para el pago
   const preference = {
@@ -17,18 +17,18 @@ const handlerMercadopago=(req, res)=> {
     // Los datos del artículo por el cual el usuario debe pagar * REQUERIDO
     items: [
       {
-        title: `${turno.service} - Nombre de la marca`,
+        title: `${product.service} - Nombre de la marca`,
         description: `Descripción del producto`,
         picture_url: "url de imagen",
         quantity: 1,
         currency_id: "currency needed (ARS, USD, etc)",
-        unit_price: turno.price,
+        unit_price: product.price,
       }
     ],
     // Datos del usuario * REQUERIDO
     payer: {
       name: user.name,
-      surname: user.name.split(" ")[1] || "TGB",
+      surname: user.name.split(" ")[1] || "",
       email: user.email,
     },
     // Cuando el usuario finaliza el pago, dependiendo del estado del pago, será redirigido a diferentes URLs personalizadas
