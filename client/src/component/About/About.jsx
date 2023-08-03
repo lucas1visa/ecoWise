@@ -2,8 +2,8 @@ import React from 'react';
 
  const About = () => {
     return (
-        <>
-            <section className="bg-dark text-white text-center py-3" >
+        <div>
+            <section className="bg-dark text-white text-center py-3 " >
                 <h1 className="container-fluid text-white" >Acerca del proyecto</h1>
             </section>
 
@@ -16,7 +16,7 @@ import React from 'react';
                 </div>
             </section>
            
-        </>
+        </div>
     );
 };
 export default About;
