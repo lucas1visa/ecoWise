@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { orderProductsAlpha, orderProductsAlphant,orderProductsPricent,orderProductsPrice,getProducts } from '../../redux/actions';
-import {Cart} from '../ShoppingCar/Cart';
 const NavbarComponent = () => {
 
   const productListRedux = useSelector((state) => state.products);
