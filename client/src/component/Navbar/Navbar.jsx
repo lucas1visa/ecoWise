@@ -57,7 +57,7 @@ const NavbarComponent = () => {
             <Link to="/product/register" className="nav-link">
               Crear Producto
             </Link>
-            <Cart/>
+            <Link to='/Cart' className='nav-link'>Carrito</Link>
           </Nav>
         </Navbar.Collapse>
 

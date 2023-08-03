@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFav, addToCart, getId } from "../../redux/actions/index";
 import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -56,7 +57,9 @@ const ProductDetail = () => {
               )
             )}
           </select>
-          <button onClick={handleAddToCart}>Add to Cart</button>
+          <Link to="/cart">
+        <button onClick={handleAddToCart}>Add to Cart</button>
+          </Link>
         </div>
       </main>
 

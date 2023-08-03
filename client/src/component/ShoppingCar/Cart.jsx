@@ -1,34 +1,20 @@
-import { useId} from "react";
-import {cartIcon, clearCartIcon, removeFromCartIcon } from './Icons.jsx'
-/* import {ProductDetail} from '../ProductDetail/ProductDetail.jsx'; */
+import { useSelector } from 'react-redux';
 
 const Cart = () => {
-  const carritoCheckBoxId = useId()
+  const cartItems = useSelector((state) => state.cartItems);
 
   return (
-    <>
-      <label className='cart-button' htmlFor={carritoCheckBoxId}>
-        <cartIcon />
-      </label>
-      <input id={carritoCheckBoxId} type='checkbox' hidden />
-{/* 
-      <aside className='cart'>
-        <ul>
-          {cart.map(product => (
-            <CartItem
-              key={product.id}
-              addToCart={() => addToCart(product)}
-              {...product}
-            />
-          ))}
-        </ul>
+    <div>
+      <h2>Cart</h2>
+      <ul>
+        {cartItems.map((item) => (
+          <li key={item.product.id}>
+            {item.product.name} - Quantity: {item.quantity}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-        <button onClick={clearCart}>
-          <clearCartIcon />
-      </aside>
-        </button> */}
-    </>
-  )
-}
-
-export default Cart
+export default Cart;

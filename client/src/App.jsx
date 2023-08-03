@@ -12,6 +12,7 @@ import NavbarComponent from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
 import UserProfile from './component/UserProfile/UserProfile';
 import NewProduct from './component/NewProduct/NewProduct';
+import Cart from './component/ShoppingCar/Cart';
 
 function App() {
   const { pathname } = useLocation();
@@ -30,6 +31,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/product/register/" element={<NewProduct />} />
+          <Route path="/Cart" element={<Cart />} />
         </Routes>
         <div>{pathname !== '/' && <Footer />}</div>
       </div>
