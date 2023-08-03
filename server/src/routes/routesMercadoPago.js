@@ -1,7 +1,8 @@
 const { Router } = require("express");
-const {handlerMercadopago} = require("../handlers/handlersMercadoPago")
+const {getMercadopago,postMercadopago} = require("../handlers/handlersMercadoPago")
 const  routesMercadoPago = Router();
-routesMercadoPago.post("/checkout" , handlerMercadopago)
+routesMercadoPago.post("/create_preference" , postMercadopago)
+routesMercadoPago.get("/getmercadopago" , getMercadopago)
 
 module.exports = routesMercadoPago
 

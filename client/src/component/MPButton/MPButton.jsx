@@ -1,53 +1,42 @@
-import React, { useEffect,  } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import axios from "axios";
+const publicKey = import.meta.env.VITE_PublicKey;
+console.log(publicKey)
+const MPButton = ({titulo,precio,cantidad}) => {
+  const [preferenceId, setPreferenceId] = useState(null);
 
-const MPButton = ({product, user})=> {
+  initMercadoPago(publicKey);
 
-  useEffect(() => {
-    // La función async es necesaria ya que no podemos hacer operaciones asíncronas directamente en el nivel superior de useEffect
-    const fetchCheckout = async () => {
-      try {
-        // Realizamos la solicitud HTTP a través de Axios
-        const response = await axios.post('/api/checkout', {
-          user,
-          product,
-        });
+  const createPreference = async () => {
+    try {
+      const response = await axios.post("http://localhost:3001/create_preference", {
+        description: titulo,
+        price: precio,
+        quantity: cantidad,
+      });
 
-        const data = response.data;
-
-        // data.global es el ID que Mercado Pago devuelve en su respuesta y que viene de nuestra ruta backend
-        if (data.global) {
-          const script = document.createElement('script'); // Aquí creamos la etiqueta de script vacía
-          script.type = 'text/javascript'; // El tipo de script
-          script.src = 'https://sdk.mercadopago.com/js/v2'; // El enlace donde está alojado el script
-          script.setAttribute('data-preference-id', data.global); // Aquí configuramos el atributo data-preference-id con el ID que nos da la API de Mercado Pago
-          document.body.appendChild(script); // Aquí lo agregamos al cuerpo de nuestra página
-
-          const mp = new window.MercadoPago(import.meta.env.NEXT_PUBLIC_MP_PUBLIC_KEY, {
-            locale: 'es-AR',
-          });
-
-          // La función ".checkout" crea la conexión entre el botón y la plataforma de Mercado Pago
-          mp.checkout({
-            preference: {
-              id: data.global,
-            },
-            render: {
-              container: '.cho-container',
-              label: 'Pagar',
-            },
-          });
-        }
-      } catch (error) {
-        console.error('Error al realizar la solicitud HTTP:', error);
-      }
-    };
-
-    // Aquí simplemente ejecutamos la función fetchCheckout
-    fetchCheckout();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return <div className="cho-container"></div>;
-}
+      const { id } = response.data;
+      return id;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleBuy = async () => {
+    const id = await createPreference();
+    if (id) {
+      setPreferenceId(id);
+    }
+  };
+  return (
+    <div >
+      <div >
+        <div>
+          <button onClick={handleBuy}>Comprar</button>
+          {preferenceId && <Wallet initialization={{ preferenceId }} />}
+        </div>
+      </div>
+    </div>
+  );
+};
 export default MPButton;
