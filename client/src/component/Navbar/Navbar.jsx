@@ -1,6 +1,7 @@
-import React from 'react';
+//import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Container, Nav } from 'react-bootstrap';
+import '../Navbar/Navbar.css'
 import { Link } from 'react-router-dom';
 import { orderProductsAlpha, orderProductsAlphant,orderProductsPricent,orderProductsPrice,getProducts } from '../../redux/actions';
 const NavbarComponent = () => {
@@ -35,7 +36,7 @@ const NavbarComponent = () => {
 
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
       <Container>
         <Link to="/" className="navbar-brand">
           ecoWise
