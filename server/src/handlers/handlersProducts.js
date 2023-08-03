@@ -1,3 +1,4 @@
+const { async } = require("rxjs")
 const { products, crearProducts, updateProducts, deletP, searchProductByName, searchProductById } = require("../controllers/controllerProduct")
 
 
@@ -9,9 +10,6 @@ const getProducts = async (req, res) => {
         res.status(500).send(error)
     }
 }
-
-
-
 const postProducts = async (req, res) => {
     const productsArray = req.body; // El cuerpo de la solicitud debe ser un arreglo de objetos
     try {
@@ -33,7 +31,6 @@ const postProducts = async (req, res) => {
     }
 };
 
-
 const putProducts = async (req, res) => {
     const { description, price, quantityAvailable, id, image } = req.body;
     const updateProductos = await updateProducts(id, description, price, quantityAvailable, image)
@@ -44,7 +41,6 @@ const putProducts = async (req, res) => {
     } catch (error) {
         res.status(500).send("Hubo un error al actualizar el producto")
     }
-
 }
 
 const deleteProduct = async (req, res) => {
@@ -83,9 +79,6 @@ const getProductById = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 }
-
-
-
 
 module.exports = {
     getProducts,

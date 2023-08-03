@@ -2,10 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import MPButton from '../MPButton/MPButton';
 
 const Home = () => {
   const products = useSelector((state) => state.products);
-  console.log(products);
+  const user = {email: "visalucas558@gmail.com",name:"lucas julian visa", surname:"lucasVisa"}
   return (
     <Container>
       <Row>
@@ -18,7 +19,10 @@ const Home = () => {
               <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text>{product.description}</Card.Text>
-                <Card.Text>Precio: ${product.price}</Card.Text>
+                <Card.Text>Precio: ${product.price} 
+                  {/* <MPButton product={product} user={user}>Pagar</MPButton> */}
+                </Card.Text>
+
                 <Link to={`/products/${product.id}`}>
                   <Button variant="primary">Ver detalles</Button>
                 </Link>
@@ -30,6 +34,4 @@ const Home = () => {
     </Container>
   );
 };
-
 export default Home;
-

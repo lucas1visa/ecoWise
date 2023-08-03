@@ -1,8 +1,40 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import { orderProductsAlpha, orderProductsAlphant,orderProductsPricent,orderProductsPrice,getProducts } from '../../redux/actions';
+import {Cart} from '../ShoppingCar/Cart';
 const NavbarComponent = () => {
+
+  const productListRedux = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
+  const handleOrderChange = (e) => {
+    const selectedOrder = e.target.value;
+
+    switch (selectedOrder) {
+      case "clean":
+        dispatch(getProducts(productListRedux));
+        break;
+      case "upward":
+        dispatch(orderProductsAlpha(productListRedux));
+        break;
+      case "falling":
+        dispatch(orderProductsAlphant(productListRedux));
+        break;
+        case "price":
+        dispatch(orderProductsPrice(productListRedux));
+        break;
+      case "pricent":
+        dispatch(orderProductsPricent(productListRedux));
+        break;
+
+      default:
+        break;
+    }
+  };
+
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -21,8 +53,27 @@ const NavbarComponent = () => {
             <Link to="/contact" className="nav-link">
               Contacto
             </Link>
+
+            <Link to="/product/register" className="nav-link">
+              Crear Producto
+            </Link>
+            <Cart/>
           </Nav>
         </Navbar.Collapse>
+
+        <div>
+        <select onChange={handleOrderChange}>
+        <option value="clean">Todos Los Productos</option>
+          <option value="upward">Order A-Z</option>
+          <option value="falling">Order Z-A</option>
+          <option value="price">Mas Caros</option>
+          <option value="pricent">Mas Baratos</option>
+          
+          
+        </select>
+
+        
+      </div>
       </Container>
     </Navbar>
   );

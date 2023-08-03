@@ -51,6 +51,9 @@ export function getId(id) {
 
  
 
+
+
+
 export function addFav(product) {
   return {
     type: ADD_FAV,
@@ -66,18 +69,74 @@ export function removeFav(id) {
 }
 
 export const addToCart = (product, quantity) => {
-    return {
-      type: ADD_TO_CART,
-      payload: {
-        product,
-        quantity,
-      },
-    };
+  return {
+    type: ADD_TO_CART,
+    payload: {
+      product,
+      quantity,
+    },
   };
-  export const removeFromCart = (productId) => {
-    return {
-      type: REMOVE_FROM_CART,
-      payload: productId,
-    };
+};
+export const removeFromCart = (productId) => {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: productId,
   };
-  
+};
+
+export const orderProductsAlpha = (list) => {
+
+  return async function (dispatch) {
+
+    const products = list.sort(function (a, b) {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    })
+    dispatch({ type: GETPRODUCTS, payload: [...products] })
+  }
+}
+
+export const orderProductsAlphant = (list) => {
+
+  return async function (dispatch) {
+
+    const products = list.sort(function (a, b) {
+      if (a.name < b.name) {
+        return 1;
+      }
+      if (a.name > b.name) {
+        return -1;
+      }
+      return 0;
+    })
+    dispatch({ type: GETPRODUCTS, payload: [...products] })
+  }
+}
+
+export const orderProductsPrice = (list) => {
+
+  return async function (dispatch) {
+
+    const products = list.sort(function (a, b) {
+      return     b.price - a.price
+    })
+    dispatch({ type: GETPRODUCTS, payload: [...products] })
+  }
+}
+
+export const orderProductsPricent = (list) => {
+
+  return async function (dispatch) {
+
+    const products = list.sort(function (a, b) {
+      return       a.price - b.price
+    })
+    dispatch({ type: GETPRODUCTS, payload: [...products] })
+  }
+}
+
