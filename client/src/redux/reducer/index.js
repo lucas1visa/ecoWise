@@ -87,6 +87,7 @@ const reducer = (state = inicialState, actions) => {
           (item) => item.product.id !== actions.payload
         ),
       };
+      
 
     default:
       return {

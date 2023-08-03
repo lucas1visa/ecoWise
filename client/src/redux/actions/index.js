@@ -41,22 +41,22 @@ export const postUser = (user) => {
   };
 };
 
-export function getId(id){
-    
-  return async function (dispatch){
-      try {
-          let json = await axios.get(`/products/search/${id}`);
-          console.log(json.data);
-          return dispatch({
-              type: GET_ID,
-              payload: json.data
-          })
-      } catch(error){
-         console.log(error) 
-      }
+export function getId(id) {
+
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`/products/search/${id}`);
+      console.log(json.data);
+      return dispatch({
+        type: GET_ID,
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
-  
-  }
+
+}
 
 export function addFav(product) {
   return {
@@ -73,18 +73,74 @@ export function removeFav(id) {
 }
 
 export const addToCart = (product, quantity) => {
-    return {
-      type: ADD_TO_CART,
-      payload: {
-        product,
-        quantity,
-      },
-    };
+  return {
+    type: ADD_TO_CART,
+    payload: {
+      product,
+      quantity,
+    },
   };
-  export const removeFromCart = (productId) => {
-    return {
-      type: REMOVE_FROM_CART,
-      payload: productId,
-    };
+};
+export const removeFromCart = (productId) => {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: productId,
   };
-  
+};
+
+export const orderProductsAlpha = (list) => {
+
+  return async function (dispatch) {
+
+    const products = list.sort(function (a, b) {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    })
+    dispatch({ type: GETPRODUCTS, payload: [...products] })
+  }
+}
+
+export const orderProductsAlphant = (list) => {
+
+  return async function (dispatch) {
+
+    const products = list.sort(function (a, b) {
+      if (a.name < b.name) {
+        return 1;
+      }
+      if (a.name > b.name) {
+        return -1;
+      }
+      return 0;
+    })
+    dispatch({ type: GETPRODUCTS, payload: [...products] })
+  }
+}
+
+export const orderProductsPrice = (list) => {
+
+  return async function (dispatch) {
+
+    const products = list.sort(function (a, b) {
+      return     b.price - a.price
+    })
+    dispatch({ type: GETPRODUCTS, payload: [...products] })
+  }
+}
+
+export const orderProductsPricent = (list) => {
+
+  return async function (dispatch) {
+
+    const products = list.sort(function (a, b) {
+      return       a.price - b.price
+    })
+    dispatch({ type: GETPRODUCTS, payload: [...products] })
+  }
+}
+
