@@ -15,6 +15,7 @@ const UserProfile = () => {
     phone: "",
     password: "",
     confirmPassword: "",
+    
   });
 
   // Estado local para almacenar los mensajes de error de validación
