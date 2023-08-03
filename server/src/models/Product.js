@@ -27,11 +27,11 @@ module.exports = (sequelize) => {
   },
   category:{
     type: DataTypes.STRING,
-    allowNull:false
+    allowNull:false,
   },
   image:{
     type: DataTypes.TEXT,
-    allowNull: false
+    allowNull: false,
   }
 
 })};

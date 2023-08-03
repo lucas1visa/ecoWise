@@ -90,7 +90,7 @@ const reducer = (state = inicialState, actions) => {
 
     default:
       return {
-        ...state,
+        ...state
       };
   }
 };
