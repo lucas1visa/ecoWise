@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 // import "./userProfile.css";
 import { postUser } from "../../redux/actions/index";
@@ -16,6 +16,7 @@ const UserProfile = () => {
     password: "",
     confirmPassword: "",
   });
+
   // Estado local para almacenar los mensajes de error de validación
   const [errors, setErrors] = useState({
     name: "Nombre requerido",
@@ -47,27 +48,27 @@ const UserProfile = () => {
   //     : "";
   // };
 
-    // Función para restablecer el formulario a su estado inicial
-    const resetForm = () => {
-      setState({
-        name: "",
-        surname: "",
-        email: "",
-        phone: "",
-        password: "",
-        confirmPassword: "",
-      });
-  
-      setUserCreated(true);
-    };
-  
-    // Utilizamos useEffect para restablecer el estado de userCreated después de un tiempo para ocultar el mensaje de confirmación
-    useEffect(() => {
-      const timeout = setTimeout(() => {
-        setUserCreated(false);
-      }, 5000); // 5000ms (5 segundos) para ocultar el mensaje de confirmación después de un tiempo
-      return () => clearTimeout(timeout);
-    }, [userCreated]);
+  // Función para restablecer el formulario a su estado inicial
+  const resetForm = () => {
+    setState({
+      name: "",
+      surname: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
+    });
+
+    setUserCreated(true);
+  };
+
+  // Utilizamos useEffect para restablecer el estado de userCreated después de un tiempo para ocultar el mensaje de confirmación
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setUserCreated(false);
+    }, 5000); // 5000ms (5 segundos) para ocultar el mensaje de confirmación después de un tiempo
+    return () => clearTimeout(timeout);
+  }, [userCreated]);
 
   // Función para validar el campo de contraseña
   const validatePassword = (input) => {
@@ -159,8 +160,8 @@ const UserProfile = () => {
     // Comprobamos si hay errores antes de enviar el formulario
     if (!disable()) {
       dispatch(postUser(state));
-            // Restablecer el formulario después de enviar con éxito el usuario
-            resetForm();
+      // Restablecer el formulario después de enviar con éxito el usuario
+      resetForm();
     }
   };
 
@@ -180,27 +181,52 @@ const UserProfile = () => {
         {/* Campos del formulario */}
         <div>
           <label>Nombre</label>
-          <input type="text" name="name" value={state.name} onChange={handleChange} />
+          <input
+            type="text"
+            name="name"
+            value={state.name}
+            onChange={handleChange}
+          />
           {errors.name}
         </div>
         <div>
           <label>Apellido</label>
-          <input type="text" name="surname" value={state.surname} onChange={handleChange} />
+          <input
+            type="text"
+            name="surname"
+            value={state.surname}
+            onChange={handleChange}
+          />
           {errors.surname}
         </div>
         <div>
           <label>Email</label>
-          <input type="text" name="email" value={state.email} onChange={handleChange} />
+          <input
+            type="text"
+            name="email"
+            value={state.email}
+            onChange={handleChange}
+          />
           {errors.email}
         </div>
         <div>
           <label>Telefono</label>
-          <input type="text" name="phone" value={state.phone} onChange={handleChange} />
+          <input
+            type="text"
+            name="phone"
+            value={state.phone}
+            onChange={handleChange}
+          />
           {errors.phone}
         </div>
         <div>
           <label>Contraseña</label>
-          <input type="password" name="password" value={state.password} onChange={handleChange} />
+          <input
+            type="password"
+            name="password"
+            value={state.password}
+            onChange={handleChange}
+          />
           {errors.password}
         </div>
         {/* Campo de confirmación de contraseña */}
