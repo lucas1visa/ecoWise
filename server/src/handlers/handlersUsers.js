@@ -11,7 +11,7 @@ const getUsers = async(req,res)=>{
 }
 
 const postUsers = async (req, res) => {
-    const { name, email, password } = req.body
+    const { name, surname, email, phone,  password } = req.body
     try {
         const crearUsuario = await crearUsers(name, email, password)
         res.status(200).send("Usuario creado Correctamente")
