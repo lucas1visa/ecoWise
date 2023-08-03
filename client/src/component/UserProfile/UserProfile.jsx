@@ -159,7 +159,8 @@ const UserProfile = () => {
     e.preventDefault();
     // Comprobamos si hay errores antes de enviar el formulario
     if (!disable()) {
-      dispatch(postUser(state));
+      const { name, surname, email, phone, password } = state;
+      dispatch(postUser({ name, surname, email, phone, password }));
       // Restablecer el formulario después de enviar con éxito el usuario
       resetForm();
     }
