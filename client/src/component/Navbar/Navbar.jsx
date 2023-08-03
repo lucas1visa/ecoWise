@@ -21,6 +21,10 @@ const NavbarComponent = () => {
             <Link to="/contact" className="nav-link">
               Contacto
             </Link>
+
+            <Link to="/product/register" className="nav-link">
+              Crear Producto
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

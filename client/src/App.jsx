@@ -11,6 +11,7 @@ import Landing from './component/Landing/Landing';
 import NavbarComponent from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
 import UserProfile from './component/UserProfile/UserProfile';
+import NewProduct from './component/NewProduct/NewProduct';
 
 function App() {
   const { pathname } = useLocation();
@@ -28,6 +29,7 @@ function App() {
           <Route path='/' element={<Landing />} />
           <Route path="/home" element={<Home />} />
           <Route path="/account/register/" element={<UserProfile />} />
+          <Route path="/product/register/" element={<NewProduct />} />
         </Routes>
         <div>{pathname !== '/' && <Footer />}</div>
       </div>
