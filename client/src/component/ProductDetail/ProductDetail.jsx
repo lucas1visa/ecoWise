@@ -62,7 +62,6 @@ const ProductDetail = () => {
           </Link>
         </div>
       </main>
-
     </div>
   );
 };
