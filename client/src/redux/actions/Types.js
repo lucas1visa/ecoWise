@@ -3,7 +3,7 @@ export const GETPRODUCTS = "GETPRODUCTS"
 export const POSTPRODUCTS = "POSTPRODUCTS"
 export const POSTUSER = "POSTUSER"
 export const GET_ID = "GET_ID"
-
+export const GET_CATEGORY = "GET_CATEGORY"
 export const ADD_FAV = "ADD_FAV"
 export const REMOVE_FAV = "REMOVE_FAV"
 export const ADD_TO_CART = "ADD_TO_CART"

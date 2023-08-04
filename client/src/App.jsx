@@ -12,6 +12,7 @@ import NavbarComponent from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
 import UserProfile from './component/UserProfile/UserProfile';
 import NewProduct from './component/NewProduct/NewProduct';
+import About from './component/About/About';
 import MPButton from './component/MPButton/MPButton';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/product/register/" element={<NewProduct />} />
+          <Route path='/about'element={<About/>} />
         </Routes>
         <div>{pathname !== '/' && <Footer />}</div>
       </div>
