@@ -34,11 +34,13 @@ const ProductDetail = () => {
     <div className="container-fluid">
     <main className="row">
       <div className="col-md-6">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="img-fluid"
-        />
+      {product && (  // Add a conditional check here
+          <img
+            src={product.image}
+            alt={product.name}
+            className="img-fluid"
+          />
+        )}
       </div>
       <div className="col-md-6 d-flex align-items-center">
         {product ? (
