@@ -7,7 +7,7 @@ const Footer = () => {
         <div className='row p-5 bg-dark text-white'>
 
           <div className="col-xs-12 col-md-6 col-lg-3">
-            <p className='h3'>EcoWise</p>
+            <p className='h3'>ecoWise</p>
           </div>
           
           <div className="col-xs-12 col-md-6 col-lg-3">
