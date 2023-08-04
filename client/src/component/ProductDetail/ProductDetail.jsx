@@ -4,6 +4,7 @@ import {  addToCart, getId } from "../../redux/actions/index";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import MPButton from "../MPButton/MPButton";
+import styles from "./PrductDetail.module.css"
 
 
 const ProductDetail = () => {
@@ -27,7 +28,7 @@ const ProductDetail = () => {
  
 console.log(favoriteProducts)
   return (
-    <div>
+    <div className={styles.container}>
       <main>
         <img src={product.image} alt={product.name} />
         <h2>{product.name}</h2>
@@ -36,7 +37,7 @@ console.log(favoriteProducts)
         <p>Quantity available: {product.quantityAvailable}</p>
         <p>Category: {product.category}</p>
         <button onClick={handleAddToFavorites}>❤️</button>
-        <div>
+          <div className={styles.select}>
           <label htmlFor="quantity-select">Quantity:</label>
           <select
             id="quantity-select"
