@@ -10,6 +10,7 @@ import {
   REMOVE_FAV,
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  GET_CATEGORY,
 } from "./Types";
 
 export const getUsers = () => {
@@ -36,7 +37,7 @@ export const postProduct = (product) => {
 
 export const postUser = (user) => {
   return async (dispatch) => {
-    const res = await axios.post("/products", user);
+    const res = await axios.post("/users", user);
     dispatch({ type: POSTUSER, payload: res });
   };
 };
@@ -138,5 +139,20 @@ export const orderProductsPricent = (list) => {
     })
     dispatch({ type: GETPRODUCTS, payload: [...products] })
   }
+}
+
+export const filterByCategory = (category) => {
+  return{
+    type:"FILTER_BY_CATEGORY", payload: category
+  
+  }
+}
+
+export function getCategory(category) {
+  return async (dispatch) => {
+    const { data } = await axios.get(`/products/sea?category=${category}`);
+    dispatch({ type: GET_CATEGORY, payload: data });
+    console.log(data)
+  };
 }
 

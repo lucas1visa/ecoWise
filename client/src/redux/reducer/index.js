@@ -5,6 +5,9 @@ import {
   REMOVE_FAV,
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  GET_CATEGORY,
+
+
 } from "../actions/Types";
 
 const inicialState = {
@@ -12,6 +15,7 @@ const inicialState = {
   detail: [],
   favorites: [],
   cartItems: [],
+  filtered: [],
 };
 
 const reducer = (state = inicialState, actions) => {
@@ -23,6 +27,7 @@ const reducer = (state = inicialState, actions) => {
       return {
         ...state,
         products: actions.payload,
+        
       };
 
     case GET_ID:
@@ -79,7 +84,15 @@ const reducer = (state = inicialState, actions) => {
           (item) => item.product.id !== actions.payload
         ),
       };
-      
+
+      case GET_CATEGORY:
+      return {
+        ...state,
+        products: actions.payload,
+      };
+
+
+
 
     default:
       return {
