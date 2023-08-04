@@ -9,7 +9,7 @@ import {
 
 const inicialState = {
   products: [],
-  detail: [],
+  detail: {},
   favorites: [],
   cartItems: [],
 };
@@ -32,6 +32,7 @@ const reducer = (state = inicialState, actions) => {
       };
 
     case ADD_FAV:
+      console.log("Adding to favorites:", actions.payload);
       return {
         ...state,
         favorites: [...state.favorites, actions.payload],
