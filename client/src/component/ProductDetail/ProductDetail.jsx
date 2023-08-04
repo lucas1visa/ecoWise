@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {  addToCart, getId, addFav } from "../../redux/actions/index";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-
+import "./ProductDetail.css"
 
 
 const ProductDetail = () => {
@@ -33,60 +33,74 @@ const ProductDetail = () => {
   
 
   return (
-    <div>
-      <main>
-      {product ? (
-         <>
-        <img src={product.image} alt={product.name} />
-        <h2>{product.name}</h2>
-        <p>{product.description}</p>
-        <p>Price: ${product.price}</p>
-        <p>Quantity available: {product.quantityAvailable}</p>
-        <p>Category: {product.category}</p>
-        {favorites.find((favProduct) => favProduct.id === product.id) ? (
-              <p>Agregado a Favoritos</p>
-            ) : (
-              <button onClick={handleAddFavorite}>❤️</button>
-            )}
-             
-
-        <div>
-          <label htmlFor="quantity-select">Quantity:</label>
-          <select
-            id="quantity-select"
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-          >
-            {Array.from(
-              { length: product.quantityAvailable },
-              (_, index) => index + 1
-            ).map(
-              (
-                count // array con la cantidad de elementos igual a product.quantityAvailable. map  genera las opciones dentro del selector.
-              ) => (
-                <option
-                  key={count}
-                  value={count}
-                  disabled={count > product.quantityAvailable}
+    <div className="container-fluid">
+    <main className="row">
+      <div className="col-md-6">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="img-fluid"
+        />
+      </div>
+      <div className="col-md-6 d-flex align-items-center">
+        {product ? (
+          <>
+            <div className="product-info">
+              <h2 className="h2-name">{product.name}</h2>
+              <p>{product.description}</p>
+              <p>Precio: ${product.price}</p>
+              <p>Cantidad disponible: {product.quantityAvailable}</p>
+              <p>Categoria: {product.category}</p>
+              {favorites.find((favProduct) => favProduct.id === product.id) ? (
+                <p>Agregado a Favoritos</p>
+              ) : (
+                <button className="btn btn-button" onClick={handleAddFavorite}>
+                  🤍 
+                </button>
+              )}
+  
+              <div className="quantity-select d-flex align-items-center ms-sm-5">
+                <label htmlFor="quantity-select">Cantidad:</label>
+                <select
+                  id="quantity-select"
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                  className="form-select custom-select"
                 >
-                  {count}
-                </option> //value= valor de la opción, disabled=deshabilita las opciones donde count (la cantidad seleccionada) sea mayor que product.quantityAvailable
-              )
-            )}
-          </select>
-          <Link to="/cart">
-        <button onClick={handleAddToCart}>Add to Cart</button>
-          </Link>
-        </div>
-        </>
-         ) : (
-          <p>Loading...</p> 
+                  {Array.from(
+                    { length: product.quantityAvailable },
+                    (_, index) => index + 1
+                  ).map((count) => (
+                    <option
+                      key={count}
+                      value={count}
+                      disabled={count > product.quantityAvailable}
+                      
+                    >
+                      {count}
+                    </option>
+                  ))}
+                </select>
+                <Link to="/cart">
+                  <button
+                    className="btn btn-button"
+                    onClick={handleAddToCart}
+                  >
+                    Agregar al carrito
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </>
+        ) : (
+          <p>Loading...</p>
         )}
-      </main>
-    </div>
+      </div>
+    </main>
+  </div>
+  
   );
 };
-
 
 
 export default ProductDetail;

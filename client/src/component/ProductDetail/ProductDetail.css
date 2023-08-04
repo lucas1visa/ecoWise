@@ -1,0 +1,41 @@
+
+.container-fluid{
+  background-image: url(../../Img/ecoWise.png);
+  max-width: 100%;
+}
+.img-fluid{
+  width: 60%;
+}
+.product-info{
+  font-weight: bold;
+
+}
+.btn-button{
+  color: aliceblue;
+  font-weight: bold;
+}
+.form-select{
+  
+  font-weight: bold;
+}
+
+
+.custom-select {
+  
+  cursor: pointer; 
+  font-size: 15px; 
+  height: auto;
+  width: 90px;
+  
+}
+.h2-name{
+  color: rgb(248, 243, 253);
+  font-weight: bold;
+}
+
+
+.custom-select:focus {
+  border-color: #4C5270;
+  box-shadow: 0 0 0 0.25rem rgba(138, 43, 226, 0.25); 
+}
+
