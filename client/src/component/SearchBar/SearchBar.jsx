@@ -1,18 +1,30 @@
 import { useDispatch } from "react-redux";
 import styles from"./SearchBar.module.css"
 import { searchPrducts,getProducts } from "../../redux/actions";
-const Search = () =>{
-    const dispatch = useDispatch()
-    const handleChange = (event)=>{
-        const name = event.target.value
-        console.log(name)
-        if(name === "") dispatch(getProducts())
-        dispatch(searchPrducts(name));
-    }
+import { useState } from "react";
+const Search = () => {
+    const dispatch = useDispatch();
+    const [productName, setProductName] = useState(''); // Estado para almacenar el valor del input
+  
+    const handleChange = () => {
+      console.log(productName);
+      if (productName === '') {
+        dispatch(getProducts());
+      } else {
+        dispatch(searchPrducts(productName));
+      }
+    };
+  
     return (
-        <div className={styles.containerSearch}>
-            <input onChange={handleChange} type="text" placeholder="Productos" />
-        </div>
-    )
-}
-export default Search
+      <div className={styles.containerSearch}>
+        <input
+          type="text"
+          placeholder="Productos"
+          value={productName} // Establece el valor del input desde el estado
+          onChange={(event) => setProductName(event.target.value)} // Actualiza el estado cuando cambia el input
+        />
+        <button onClick={handleChange}>buscar</button>
+      </div>
+    );
+  };
+  export default Search
