@@ -11,7 +11,7 @@ const Search = () =>{
     }
     return (
         <div className={styles.containerSearch}>
-            <input onChange={handleChange} type="text" placeholder="Products" />
+            <input onChange={handleChange} type="text" placeholder="Productos" />
         </div>
     )
 }
