@@ -37,6 +37,7 @@ function App() {
           <Route path="/product/register/" element={<NewProduct />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path='product/:id' element={<ProductDetail/>}/>
+          <Route path='/about'element={<About/>} />
         </Routes>
         <div>{pathname !== '/' && <Footer />}</div>
       </div>

@@ -26,6 +26,7 @@ const Landing = () => {
             <Link to="/account/register/" className="btn btn-secondary">
               Sign in
             </Link>
+            
           </div>
         </div>
         <div className="col-md-6">
