@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import '../CardProducts/CardProducts.css'
+import MPButton from '../MPButton/MPButton';
 
 const CardProducts = () => {
   
@@ -33,6 +34,7 @@ const CardProducts = () => {
                 <Link to={`/product/${product.id}`}>
                   <Button variant="primary">Ver detalles</Button>
                 </Link>
+                  <MPButton titulo={product.name} cantidad={1} precio={product.price}/>
               </Card.Body>
             </Card>
           </Col>
