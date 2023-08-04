@@ -13,7 +13,7 @@ function CategorySelect() {
     };
 
     // Aquí debes tener una lista de opciones para el select (puedes obtenerla de alguna fuente de datos o hardcodearla)
-    const categories = ['Hogar', 'Cocina', 'Cuidado Personal'];
+    const categories = ['Hogar', 'Cocina', 'Cuidado Personal', 'Promociones'];
 
     return (
         <div>
