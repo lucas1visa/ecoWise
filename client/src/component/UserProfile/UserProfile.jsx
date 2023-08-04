@@ -238,61 +238,17 @@ const UserProfile = () => {
         </div>
         <div>
           <label>Contraseña</label>
-          <div style={{ position: "relative" }}>
-            <input
-              // type="password"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={state.password}
-              onChange={handleChange}
-            />
-            {/* Botón para alternar la visibilidad de la contraseña */}
-            <button
-              type="button"
-              onClick={toggleShowPassword}
-              style={{
-                position: "absolute",
-                top: "50%",
-                right: "10px",
-                transform: "translateY(-50%)",
-                backgroundColor: "transparent",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              {showPassword ? "👁️" : "👁️‍🗨️"}
-            </button>
-          </div>
+          <input type="password" name="password" onChange={handleChange} />
           {errors.password}
         </div>
         {/* Campo de confirmación de contraseña */}
         <div>
           <label>Confirmar Contraseña</label>
-          <div style={{ position: "relative" }}>
-            <input
-              // type="password"
-              type={showConfirmPassword ? "text" : "password"}
-              name="confirmPassword"
-              value={state.confirmPassword}
-              onChange={handleChange}
-            />
-            {/* Botón para alternar la visibilidad de la contraseña de confirmación */}
-            <button
-              type="button"
-              onClick={toggleShowConfirmPassword}
-              style={{
-                position: "absolute",
-                top: "50%",
-                right: "10px",
-                transform: "translateY(-50%)",
-                backgroundColor: "transparent",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
-            </button>
-          </div>
+          <input
+            type="password"
+            name="confirmPassword"
+            onChange={handleChange}
+          />
           {errors.confirmPassword}
         </div>
         {/* Mensaje de confirmación */}
