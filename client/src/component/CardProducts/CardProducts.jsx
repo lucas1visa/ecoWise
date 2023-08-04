@@ -25,16 +25,15 @@ const CardProducts = () => {
               <Link to={`/product/${product.id}`}>
                 <Card.Img variant="top" src={product.image} alt={product.name} id='image-Products'/>
               </Link>
-              <Card.Body>b
+              <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text>{product.description}</Card.Text>
                 <Card.Text>Precio: ${product.price} 
                 </Card.Text>
 
                 <Link to={`/product/${product.id}`}>
-                  <Button variant="primary">Ver detalles</Button>
+                  <Button variant="primary">Comprar</Button>
                 </Link>
-                  <MPButton titulo={product.name} cantidad={1} precio={product.price}/>
               </Card.Body>
             </Card>
           </Col>

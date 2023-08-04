@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {  addToCart, getId } from "../../redux/actions/index";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import MPButton from "../MPButton/MPButton";
+
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -61,6 +63,7 @@ console.log(favoriteProducts)
           <Link to="/cart">
         <button onClick={handleAddToCart}>Add to Cart</button>
           </Link>
+          <MPButton titulo={product.name} cantidad={1} precio={product.price}/>
         </div>
       </main>
     </div>
