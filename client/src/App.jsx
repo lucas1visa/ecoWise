@@ -15,6 +15,8 @@ import NewProduct from './component/NewProduct/NewProduct';
 import About from './component/About/About';
 import MPButton from './component/MPButton/MPButton';
 
+import Cart from './component/ShoppingCar/Cart';
+import ProductDetail from './component/ProductDetail/ProductDetail';
 function App() {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -33,6 +35,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/product/register/" element={<NewProduct />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path='product/:id' element={<ProductDetail/>}/>
           <Route path='/about'element={<About/>} />
         </Routes>
         <div>{pathname !== '/' && <Footer />}</div>

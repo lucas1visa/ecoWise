@@ -21,7 +21,7 @@ const CardProducts = () => {
         {products.map((product) => (
           <Col key={product.id} md={4}>
             <Card className="mb-4">
-              <Link to={`/products/${product.id}`}>
+              <Link to={`/product/${product.id}`}>
                 <Card.Img variant="top" src={product.image} alt={product.name} id='image-Products'/>
               </Link>
               <Card.Body>
@@ -30,7 +30,7 @@ const CardProducts = () => {
                 <Card.Text>Precio: ${product.price} 
                 </Card.Text>
 
-                <Link to={`/products/${product.id}`}>
+                <Link to={`/product/${product.id}`}>
                   <Button variant="primary">Ver detalles</Button>
                 </Link>
               </Card.Body>
