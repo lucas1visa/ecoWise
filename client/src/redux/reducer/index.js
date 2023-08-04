@@ -6,8 +6,7 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   GET_CATEGORY,
-
-
+  SEARCH_PRODUCTS
 } from "../actions/Types";
 
 const inicialState = {
@@ -90,6 +89,11 @@ const reducer = (state = inicialState, actions) => {
         ...state,
         products: actions.payload,
       };
+      case SEARCH_PRODUCTS:
+        return{
+          ...state,
+          products: actions.payload
+        }
 
 
 

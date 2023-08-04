@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { async } = require("rxjs");
 const { Product } = require("../db");
 
@@ -78,12 +79,17 @@ const deletP = async (id) => {
 };
 
 const searchProductByName = async (name) => {
-  const findProduct = await Product.findAll({ where: { name: name } })
+  const findProduct = await Product.findAll({ where: {
+    name: {
+      [Op.iLike]: `%${name}%`,
+    },
+  }})
+  console.log(findProduct)
   return findProduct;
 }
 
 const searchProductById = async (id) => {
-
+ 
   const findProductId = await Product.findAll({ where: { id: id } })
   return findProductId
 }

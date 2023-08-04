@@ -5,6 +5,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import '../Navbar/Navbar.css'
 import { Link } from 'react-router-dom';
 import { orderProductsAlpha, orderProductsAlphant, orderProductsPricent, orderProductsPrice, getProducts } from '../../redux/actions';
+import Search from '../SearchBar/SearchBar';
 const NavbarComponent = () => {
 
   const productListRedux = useSelector((state) => state.products);
@@ -66,6 +67,7 @@ const NavbarComponent = () => {
             </Link>
             <Link to='/Cart' className='nav-link'>Carrito</Link>
           </Nav>
+          <Search/>
         </Navbar.Collapse>
 
         <div>
