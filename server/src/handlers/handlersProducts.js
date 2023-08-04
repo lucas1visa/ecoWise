@@ -1,5 +1,5 @@
 const { async } = require("rxjs")
-const { products, crearProducts, updateProducts, deletP, searchProductByName, searchProductById } = require("../controllers/controllerProduct")
+const { products, crearProducts, updateProducts, deletP, searchProductByName, searchProductById, searchProductByCategory } = require("../controllers/controllerProduct")
 
 
 const getProducts = async (req, res) => {
@@ -80,11 +80,27 @@ const getProductById = async (req, res) => {
     }
 }
 
+const getProductByCategory = async (req, res) => {
+    try {
+        const { category } = req.query;
+
+        const resultado = category ? await searchProductByCategory(category) : await getProducts();
+
+        res.status(200).json(resultado);
+
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+
+    }
+}
+
 module.exports = {
     getProducts,
     postProducts,
     putProducts,
     deleteProduct,
     getProductByName,
-    getProductById
+    getProductById,
+    getProductByCategory
 }

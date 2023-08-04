@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 // import "./userProfile.css";
 import { postUser } from "../../redux/actions/index";
@@ -15,8 +15,8 @@ const UserProfile = () => {
     phone: "",
     password: "",
     confirmPassword: "",
-    
   });
+
   // Estado local para almacenar los mensajes de error de validación
   const [errors, setErrors] = useState({
     name: "Nombre requerido",
@@ -26,6 +26,9 @@ const UserProfile = () => {
     password: "Contraseña requerida",
     confirmPassword: "Debe confirmar la contraseña",
   });
+
+  // Nuevo estado para rastrear si el usuario se ha creado correctamente
+  const [userCreated, setUserCreated] = useState(false);
 
   // Función para deshabilitar el botón de envío si hay errores en el formulario
   const disable = () => {
@@ -44,6 +47,28 @@ const UserProfile = () => {
   //       : "Teléfono debe tener 10 dígitos numéricos"
   //     : "";
   // };
+
+  // Función para restablecer el formulario a su estado inicial
+  const resetForm = () => {
+    setState({
+      name: "",
+      surname: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
+    });
+
+    setUserCreated(true);
+  };
+
+  // Utilizamos useEffect para restablecer el estado de userCreated después de un tiempo para ocultar el mensaje de confirmación
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setUserCreated(false);
+    }, 5000); // 5000ms (5 segundos) para ocultar el mensaje de confirmación después de un tiempo
+    return () => clearTimeout(timeout);
+  }, [userCreated]);
 
   // Función para validar el campo de contraseña
   const validatePassword = (input) => {
@@ -134,7 +159,10 @@ const UserProfile = () => {
     e.preventDefault();
     // Comprobamos si hay errores antes de enviar el formulario
     if (!disable()) {
-      dispatch(postUser(state));
+      const { name, surname, email, phone, password } = state;
+      dispatch(postUser({ name, surname, email, phone, password }));
+      // Restablecer el formulario después de enviar con éxito el usuario
+      resetForm();
     }
   };
 
@@ -154,27 +182,52 @@ const UserProfile = () => {
         {/* Campos del formulario */}
         <div>
           <label>Nombre</label>
-          <input type="text" name="name" onChange={handleChange} />
+          <input
+            type="text"
+            name="name"
+            value={state.name}
+            onChange={handleChange}
+          />
           {errors.name}
         </div>
         <div>
           <label>Apellido</label>
-          <input type="text" name="surname" onChange={handleChange} />
+          <input
+            type="text"
+            name="surname"
+            value={state.surname}
+            onChange={handleChange}
+          />
           {errors.surname}
         </div>
         <div>
           <label>Email</label>
-          <input type="text" name="email" onChange={handleChange} />
+          <input
+            type="text"
+            name="email"
+            value={state.email}
+            onChange={handleChange}
+          />
           {errors.email}
         </div>
         <div>
           <label>Telefono</label>
-          <input type="text" name="phone" onChange={handleChange} />
+          <input
+            type="text"
+            name="phone"
+            value={state.phone}
+            onChange={handleChange}
+          />
           {errors.phone}
         </div>
         <div>
           <label>Contraseña</label>
-          <input type="password" name="password" onChange={handleChange} />
+          <input
+            type="password"
+            name="password"
+            value={state.password}
+            onChange={handleChange}
+          />
           {errors.password}
         </div>
         {/* Campo de confirmación de contraseña */}
@@ -183,10 +236,13 @@ const UserProfile = () => {
           <input
             type="password"
             name="confirmPassword"
+            value={state.confirmPassword}
             onChange={handleChange}
           />
           {errors.confirmPassword}
         </div>
+        {/* Mensaje de confirmación */}
+        {userCreated && <p>¡Usuario creado correctamente!</p>}
         {/* Botón de envío */}
         <button disabled={disable()} type="submit">
           Submit

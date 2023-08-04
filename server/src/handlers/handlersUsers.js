@@ -1,7 +1,7 @@
 const { users, crearUsers, update, delet } = require("../controllers/controllerUsers")
 
 
-const getUsers = async(req,res)=>{
+const getUsers = async (req, res) => {
     try {
         const todosLosUsuarios = await users()
         res.status(200).send(todosLosUsuarios)
@@ -11,9 +11,9 @@ const getUsers = async(req,res)=>{
 }
 
 const postUsers = async (req, res) => {
-    const { name, surname, email, phone,  password } = req.body
+    const { name, surname, email, phone, password } = req.body
     try {
-        const crearUsuario = await crearUsers(name, email, password)
+        const crearUsuario = await crearUsers(name, surname, email, phone, password)
         res.status(200).send("Usuario creado Correctamente")
     } catch (error) {
         res.status(500).send("Error: " + error.message)
@@ -32,7 +32,7 @@ const putUsers = async (req, res) => {
 };
 
 const deleteUsers = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const deleteUsers = await delet(id);
     try {
         res.status(200).send(`Se elimino el usuario con id: ${id} con exito`)

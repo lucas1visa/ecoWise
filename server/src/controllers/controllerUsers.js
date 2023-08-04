@@ -41,18 +41,18 @@ const update = async (id, password) => {
 };
 
 const delet = async (id) => {
-  
+
   try {
-            const getUsers = await User.findByPk(id);
-            
-            if( getUsers){
-                getUsers.destroy();
-                return "Deleted Users";
-              } else {
-                throw Error("Users not found")
-              } 
+    const getUsers = await User.findByPk(id);
+
+    if (getUsers) {
+      getUsers.destroy();
+      return "Deleted Users";
+    } else {
+      throw Error("Users not found")
+    }
   } catch (error) {
-      throw error;
+    throw error;
   }
 }
 
