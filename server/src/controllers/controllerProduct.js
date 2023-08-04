@@ -88,6 +88,11 @@ const searchProductById = async (id) => {
   return findProductId
 }
 
+const searchProductByCategory = async (category) => {
+  const findProducto = await Product.findAll({ where: { category: category } })
+  return findProducto;
+}
+
 
 module.exports = {
   products,
@@ -96,4 +101,5 @@ module.exports = {
   deletP,
   searchProductByName,
   searchProductById,
+  searchProductByCategory
 };

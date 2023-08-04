@@ -5,7 +5,15 @@ import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import '../CardProducts/CardProducts.css'
 
 const CardProducts = () => {
-    const products = useSelector((state) => state.products);
+  
+
+
+  const products = useSelector((state) => {
+    if (state.products.length > 0) {
+     return state.products
+   } else {
+     return state.products;
+   }})
     return (
         <div>
      <Container>
