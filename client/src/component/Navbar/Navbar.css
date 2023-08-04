@@ -1,0 +1,13 @@
+#Navbar{
+    height: 100px;
+    background-color: #4c5270;
+}
+
+.nav-link{
+    color: aliceblue;
+}
+
+.navbar-brand{
+    font-size: 30px;
+    margin-bottom: 3px;
+}
