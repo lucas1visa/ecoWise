@@ -30,17 +30,17 @@ const NavbarComponent = () => {
       case "pricent":
         dispatch(orderProductsPricent(productListRedux));
         break;
-        
-        
+
+
 
       default:
         break;
     }
   };
 
-  
 
-  
+
+
 
 
   return (
@@ -66,18 +66,27 @@ const NavbarComponent = () => {
               Crear Producto
             </Link>
             <Link to='/Cart' className='nav-link'>
-            <img className='nav-image-carrito' src={carritoImage}  alt='Carrito de compras' style={{ width: '30%', height: 'auto', maxWidth: '30vw', maxHeight: '15vh' }} />
+              <img className='nav-image-carrito' src={carritoImage} alt='Carrito de compras' style={{ width: '30%', height: 'auto', maxWidth: '30vw', maxHeight: '15vh' }} />
             </Link>
           </Nav>
         </Navbar.Collapse>
 
-        <div>
-          <CategorySelect/>
-        </div>
+
+        <button className="prolijo-button" onClick={handleOrderChange} value="clean">ALL</button>
+
+
+
 
         <div>
+          <CategorySelect />
+        </div>
+
+
+
+        <div>
+
           <select onChange={handleOrderChange}>
-            <option value="clean">Todos Los Productos</option>
+            <option value="clea">Order By</option>
             <option value="upward">Order A-Z</option>
             <option value="falling">Order Z-A</option>
             <option value="price">Mas Caros</option>
@@ -88,7 +97,11 @@ const NavbarComponent = () => {
 
 
         </div>
+
+
       </Container>
+
+
     </Navbar>
   );
 };
