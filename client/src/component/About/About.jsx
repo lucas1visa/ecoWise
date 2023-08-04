@@ -12,7 +12,8 @@ import styles from './About.module.css';
                     <h2 className={styles.title}>Objetivos de la App</h2>
                     <p className={styles.text}>
                         Los objetivos de la app es poder ayudar y consientizar a las personas para que utilize productos de origen sustentables
-                        en la app es posible comprar los productos que aparecen y crearse un usuario e filtrar productos y ordenarlos por sus preferencias.
+                        en la app es posible comprar los productos que aparecen y crearse un usuario otras funcionalidaes son poder buscar por preferencias
+                        ej filtrar productos y ordenarlos por orden alfabetico por menos e valor precios. 
                     </p>
                 </div>
             </section>
