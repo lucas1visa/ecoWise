@@ -13,6 +13,7 @@ import Footer from './component/Footer/Footer';
 import UserProfile from './component/UserProfile/UserProfile';
 import NewProduct from './component/NewProduct/NewProduct';
 import About from './component/About/About';
+import MPButton from './component/MPButton/MPButton';
 
 function App() {
   const { pathname } = useLocation();
@@ -27,6 +28,7 @@ function App() {
       <div className="container">
         <div>{pathname !== '/' && <NavbarComponent />}</div>
         <Routes>
+        <Route path='/mercadopago' element={<MPButton/>} />
           <Route path='/' element={<Landing />} />
           <Route path="/home" element={<Home />} />
           <Route path="/account/register/" element={<UserProfile />} />
