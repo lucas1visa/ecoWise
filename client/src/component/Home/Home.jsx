@@ -5,7 +5,8 @@ import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import MPButton from '../MPButton/MPButton';
 
 const Home = () => {
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) =>  {
+    state.products});
   const user = {email: "visalucas558@gmail.com",name:"lucas julian visa", surname:"lucasVisa"}
   return (
     <Container>

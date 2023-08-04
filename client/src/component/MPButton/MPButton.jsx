@@ -15,7 +15,7 @@ const MPButton = ({titulo,precio,cantidad}) => {
         price: precio,
         quantity: cantidad,
       });
-
+      
       const { id } = response.data;
       return id;
     } catch (error) {
