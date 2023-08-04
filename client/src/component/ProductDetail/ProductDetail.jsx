@@ -6,20 +6,13 @@ import { Link } from "react-router-dom";
 
 const ProductDetail = () => {
   const { id } = useParams();
-
-  const product = useSelector((state) => state.products);
-  console.log(product)
+  
+  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
-
-  useEffect(() => {
-    dispatch(getId(id));
-    console.log(getId)
-  }, [dispatch, id]);
-
-
-
+  const product = products.find((element)=>element.id==id);
+  
   const handleAddToCart = () => {
     dispatch(addToCart(product.id, quantity));
   };
@@ -30,7 +23,7 @@ const ProductDetail = () => {
     }
   };
  
-
+console.log(favoriteProducts)
   return (
     <div>
       <main>

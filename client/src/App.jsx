@@ -12,8 +12,11 @@ import NavbarComponent from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
 import UserProfile from './component/UserProfile/UserProfile';
 import NewProduct from './component/NewProduct/NewProduct';
-import Cart from './component/ShoppingCar/Cart';
+import About from './component/About/About';
+import MPButton from './component/MPButton/MPButton';
 
+import Cart from './component/ShoppingCar/Cart';
+import ProductDetail from './component/ProductDetail/ProductDetail';
 function App() {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -27,11 +30,13 @@ function App() {
       <div className="container">
         <div>{pathname !== '/' && <NavbarComponent />}</div>
         <Routes>
+        <Route path='/mercadopago' element={<MPButton/>} />
           <Route path='/' element={<Landing />} />
           <Route path="/home" element={<Home />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/product/register/" element={<NewProduct />} />
           <Route path="/Cart" element={<Cart />} />
+          <Route path='product/:id' element={<ProductDetail/>}/>
         </Routes>
         <div>{pathname !== '/' && <Footer />}</div>
       </div>
