@@ -32,7 +32,6 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/product/register/" element={<NewProduct />} />
-          <Route path="/Cart" element={<Cart />} />
         </Routes>
         <div>{pathname !== '/' && <Footer />}</div>
       </div>
