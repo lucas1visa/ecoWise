@@ -36,7 +36,7 @@ export const postProduct = (product) => {
 
 export const postUser = (user) => {
   return async (dispatch) => {
-    const res = await axios.post("/products", user);
+    const res = await axios.post("/users", user);
     dispatch({ type: POSTUSER, payload: res });
   };
 };
