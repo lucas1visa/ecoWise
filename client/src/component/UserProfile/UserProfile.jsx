@@ -176,6 +176,22 @@ const UserProfile = () => {
     validateField({ ...state, [name]: value }, name);
   };
 
+  // Estado local para rastrear si se muestra la contraseña en el campo de contraseña
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Estado local para rastrear si se muestra la contraseña en el campo de confirmación de contraseña
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // Función para alternar la visibilidad de la contraseña en el campo de contraseña
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+  // Función para alternar la visibilidad de la contraseña en el campo de confirmación de contraseña
+  const toggleShowConfirmPassword = () => {
+    setShowConfirmPassword((prevState) => !prevState);
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -222,23 +238,61 @@ const UserProfile = () => {
         </div>
         <div>
           <label>Contraseña</label>
-          <input
-            type="password"
-            name="password"
-            value={state.password}
-            onChange={handleChange}
-          />
+          <div style={{ position: "relative" }}>
+            <input
+              // type="password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={state.password}
+              onChange={handleChange}
+            />
+            {/* Botón para alternar la visibilidad de la contraseña */}
+            <button
+              type="button"
+              onClick={toggleShowPassword}
+              style={{
+                position: "absolute",
+                top: "50%",
+                right: "10px",
+                transform: "translateY(-50%)",
+                backgroundColor: "transparent",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              {showPassword ? "👁️" : "👁️‍🗨️"}
+            </button>
+          </div>
           {errors.password}
         </div>
         {/* Campo de confirmación de contraseña */}
         <div>
           <label>Confirmar Contraseña</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={state.confirmPassword}
-            onChange={handleChange}
-          />
+          <div style={{ position: "relative" }}>
+            <input
+              // type="password"
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              value={state.confirmPassword}
+              onChange={handleChange}
+            />
+            {/* Botón para alternar la visibilidad de la contraseña de confirmación */}
+            <button
+              type="button"
+              onClick={toggleShowConfirmPassword}
+              style={{
+                position: "absolute",
+                top: "50%",
+                right: "10px",
+                transform: "translateY(-50%)",
+                backgroundColor: "transparent",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
+            </button>
+          </div>
           {errors.confirmPassword}
         </div>
         {/* Mensaje de confirmación */}
