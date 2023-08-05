@@ -11,6 +11,7 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   GET_CATEGORY,
+  SEARCH_PRODUCTS
 } from "./Types";
 
 export const getUsers = () => {
@@ -155,4 +156,10 @@ export function getCategory(category) {
     console.log(data)
   };
 }
+export const searchPrducts = (name)=>{
+  return async (dispatch) => {
+  const res = await axios.get(`products/?name=${name}`);
+  dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
+};
+};
 

@@ -6,13 +6,12 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   GET_CATEGORY,
-
-
+  SEARCH_PRODUCTS
 } from "../actions/Types";
 
 const inicialState = {
   products: [],
-  detail: [],
+  detail: {},
   favorites: [],
   cartItems: [],
   filtered: [],
@@ -37,6 +36,7 @@ const reducer = (state = inicialState, actions) => {
       };
 
     case ADD_FAV:
+      console.log("Adding to favorites:", actions.payload);
       return {
         ...state,
         favorites: [...state.favorites, actions.payload],
@@ -90,6 +90,11 @@ const reducer = (state = inicialState, actions) => {
         ...state,
         products: actions.payload,
       };
+      case SEARCH_PRODUCTS:
+        return{
+          ...state,
+          products: actions.payload
+        }
 
 
 

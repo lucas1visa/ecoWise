@@ -3,7 +3,6 @@ const {getProducts, postProducts, putProducts, deleteProduct,getProductByName,ge
 const  routesProducts = Router();
 routesProducts.get("/" ,getProducts)
 routesProducts.get("/search/:id" ,getProductById)
-routesProducts.get("/search", getProductByName);
 routesProducts.post("/", postProducts)
 routesProducts.put("/update", putProducts)
 routesProducts.delete("/delete/:id", deleteProduct)

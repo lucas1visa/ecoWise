@@ -5,7 +5,7 @@ import { getCategory } from "../../redux/actions"; // Asegúrate de tener la rut
 // Crea tu componente funcional de React
 function CategorySelect() {
     const dispatch = useDispatch();
-    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState([1]);
 
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);

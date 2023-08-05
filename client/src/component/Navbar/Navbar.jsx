@@ -2,9 +2,11 @@
 import CategorySelect from '../Filters/Filter'
 import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Container, Nav } from 'react-bootstrap';
+import carritoImage from '../image/carrito2.png';
 import '../Navbar/Navbar.css'
 import { Link } from 'react-router-dom';
 import { orderProductsAlpha, orderProductsAlphant, orderProductsPricent, orderProductsPrice, getProducts } from '../../redux/actions';
+import Search from '../SearchBar/SearchBar';
 const NavbarComponent = () => {
 
   const productListRedux = useSelector((state) => state.products);
@@ -29,17 +31,17 @@ const NavbarComponent = () => {
       case "pricent":
         dispatch(orderProductsPricent(productListRedux));
         break;
-        
-        
+
+
 
       default:
         break;
     }
   };
 
-  
 
-  
+
+
 
 
   return (
@@ -61,20 +63,30 @@ const NavbarComponent = () => {
               Contacto
             </Link>
 
-            <Link to="/product/register" className="nav-link">
-              Crear Producto
-            </Link>
+            {/* <Link to="/product/register" className="nav-link">
+              Crear Producto X
+            </Link> */}
             <Link to='/Cart' className='nav-link'>Carrito</Link>
           </Nav>
+          <Search/>
         </Navbar.Collapse>
 
-        <div>
-          <CategorySelect/>
-        </div>
+
+        <button className="prolijo-button" onClick={handleOrderChange} value="clean">ALL</button>
+
+
+
 
         <div>
+          <CategorySelect />
+        </div>
+
+
+
+        <div>
+
           <select onChange={handleOrderChange}>
-            <option value="clean">Todos Los Productos</option>
+            <option value="clea">Order By</option>
             <option value="upward">Order A-Z</option>
             <option value="falling">Order Z-A</option>
             <option value="price">Mas Caros</option>
@@ -85,7 +97,11 @@ const NavbarComponent = () => {
 
 
         </div>
+
+
       </Container>
+
+
     </Navbar>
   );
 };

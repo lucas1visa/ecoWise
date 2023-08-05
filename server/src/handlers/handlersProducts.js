@@ -3,7 +3,13 @@ const { products, crearProducts, updateProducts, deletP, searchProductByName, se
 
 
 const getProducts = async (req, res) => {
+    const {name}= req.query;
+    console.log(name)
     try {
+    if(name){
+        const ProductName= await searchProductByName(name)
+       return res.status(200).send(ProductName);
+    }
         const todosLosProductos = await products()
         res.status(200).send(todosLosProductos)
     } catch (error) {
@@ -52,22 +58,6 @@ const deleteProduct = async (req, res) => {
         res.status(500).send('Error: ' + error.message)
     }
 }
-
-const getProductByName = async (req, res) => {
-    try {
-        const { name } = req.query;
-
-        const results = name ? await searchProductByName(name) : await getProducts();
-
-        res.status(200).json(results);
-
-
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-
-    }
-}
-
 const getProductById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -100,7 +90,6 @@ module.exports = {
     postProducts,
     putProducts,
     deleteProduct,
-    getProductByName,
     getProductById,
     getProductByCategory
 }
