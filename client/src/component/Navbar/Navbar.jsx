@@ -62,9 +62,9 @@ const NavbarComponent = () => {
               Contacto
             </Link>
 
-            <Link to="/product/register" className="nav-link">
-              Crear Producto
-            </Link>
+            {/* <Link to="/product/register" className="nav-link">
+              Crear Producto X
+            </Link> */}
             <Link to='/Cart' className='nav-link'>Carrito</Link>
           </Nav>
           <Search/>
