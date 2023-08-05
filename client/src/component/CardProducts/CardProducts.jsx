@@ -9,7 +9,7 @@ import Paginado from '../Paginado/Paginado'; // Asegúrate de que la ruta sea co
 
 const CardProducts = () => {
   const [currentPage, setCurrentPage] = useState([1]);
-  const productsPerPage = 5;
+  const productsPerPage = 6;
 
   const products = useSelector((state) => state.products);
 
@@ -37,12 +37,7 @@ const CardProducts = () => {
 
     <div>
 
-      <Paginado
-        productsPerPage={productsPerPage}
-        totalProducts={totalProducts}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-      />
+
 
 
       <Container>
@@ -69,7 +64,12 @@ const CardProducts = () => {
           ))}
         </Row>
       </Container>
-
+      <Paginado
+        productsPerPage={productsPerPage}
+        totalProducts={totalProducts}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
 
     </div>
   );
