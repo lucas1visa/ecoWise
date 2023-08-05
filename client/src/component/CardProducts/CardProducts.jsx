@@ -54,7 +54,6 @@ const CardProducts = () => {
                   <Card.Text>{product.description}</Card.Text>
                   <Card.Text>Precio: ${product.price}
                   </Card.Text>
-
                   <Link to={`/product/${product.id}`}>
                     <Button variant="primary">Ver detalles</Button>
                   </Link>

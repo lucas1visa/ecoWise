@@ -47,7 +47,7 @@ const NavbarComponent = () => {
   return (
     <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
       <Container>
-        <Link to="/" className="navbar-brand">
+        <Link to="/home" className="navbar-brand">
           ecoWise
         </Link>
         <Navbar.Toggle aria-controls="navbar" />
@@ -56,7 +56,7 @@ const NavbarComponent = () => {
             <Link to="/" className="nav-link">
               Inicio
             </Link>
-            <Link to="/about" className="nav-link">
+            <Link to="/home" className="nav-link">
               Acerca
             </Link>
             <Link to="/contact" className="nav-link">
