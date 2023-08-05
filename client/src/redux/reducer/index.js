@@ -6,7 +6,8 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   GET_CATEGORY,
-  SEARCH_PRODUCTS
+  SEARCH_PRODUCTS,
+  RESET_QUANTITY
 } from "../actions/Types";
 
 const inicialState = {
@@ -76,6 +77,14 @@ const reducer = (state = inicialState, actions) => {
           ],
         };
       }
+      case RESET_QUANTITY:
+        return {
+          ...state,
+          cartItems: state.cartItems.map((item) =>
+            item.product.id === actions.payload ? { ...item, quantity: 0 } : item
+          ),
+        };
+
     case REMOVE_FROM_CART:
       return {
         ...state,
