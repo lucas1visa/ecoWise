@@ -5,27 +5,32 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #212529;
+   
 }
 
 .section h1 {
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 2.5rem;
+    text-transform: initial;
+    
 }
 
 .title {
-    color: #f47c69;
+    color: #584a97;
     font-size: 1.7rem;
 }
 
 .aboutMe {
     width: 70%;
     padding: 10px;
-    background-color: #4b8b42;
-    border: 2px solid #2f812f;
+    background-color: #ad9191;
+    border: 2px solid #020000;
     border-radius: 20px;
-    box-shadow: 0px 0px 10px 0px #39a04f;
+    box-shadow: 0px 0px 10px 0px #2e2525;
     animation: fadeUp 0.2s ease;
     transition: all 0.2s ease;
+    margin-bottom: 50px;
 }
 
 .text {
@@ -35,7 +40,7 @@
 .aboutMe:hover,
 .aboutProject:hover {
     transform: scale(1.1);
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 @keyframes fadeUp {

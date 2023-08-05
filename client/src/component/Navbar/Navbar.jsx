@@ -53,10 +53,10 @@ const NavbarComponent = () => {
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">
           <Nav className="ml-auto">
-            <Link to="/" className="nav-link">
+            <Link to="/home" className="nav-link">
               Inicio
             </Link>
-            <Link to="/home" className="nav-link">
+            <Link to="/" className="nav-link">
               Acerca
             </Link>
             <Link to="/contact" className="nav-link">
