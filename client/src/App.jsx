@@ -12,11 +12,13 @@ import NavbarComponent from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
 import UserProfile from './component/UserProfile/UserProfile';
 import NewProduct from './component/NewProduct/NewProduct';
+import Cart from './component/ShoppingCar/Cart';
+import ProductDetail from "./component/ProductDetail/ProductDetail"
+import Favorites from "./component/Favorites/Favorites"
 import About from './component/About/About';
 import MPButton from './component/MPButton/MPButton';
 
-import Cart from './component/ShoppingCar/Cart';
-import ProductDetail from './component/ProductDetail/ProductDetail';
+
 function App() {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -33,6 +35,8 @@ function App() {
         <Route path='/mercadopago' element={<MPButton/>} />
           <Route path='/' element={<Landing />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/product/register/" element={<NewProduct />} />
           <Route path="/Cart" element={<Cart />} />
