@@ -4,7 +4,6 @@ import {  addToCart, getId, addFav } from "../../redux/actions/index";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import MPButton from "../MPButton/MPButton";
-import styles from "./PrductDetail.module.css"
 import "./ProductDetail.css"
 
 
@@ -91,6 +90,7 @@ const ProductDetail = () => {
                     Agregar al carrito
                   </button>
                 </Link>
+                 <MPButton titulo={product.name} precio={product.price} cantidad={1}/>
               </div>
             </div>
           </>
