@@ -66,8 +66,13 @@ const NavbarComponent = () => {
               Crear Producto
             </Link>
             <Link to='/Cart' className='nav-link'>
-              <img className='nav-image-carrito' src={carritoImage} alt='Carrito de compras' style={{ width: '30%', height: 'auto', maxWidth: '30vw', maxHeight: '15vh' }} />
-            </Link>
+        <img
+          className='nav-image-carrito'
+          src={carritoImage}
+          alt='Carrito de compras'
+          style={{ width: '30%', height: 'auto', maxWidth: '30vw', maxHeight: '15vh' }}
+        />
+      </Link>
           </Nav>
         </Navbar.Collapse>
 
