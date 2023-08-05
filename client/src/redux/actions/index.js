@@ -11,7 +11,8 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   GET_CATEGORY,
-  SEARCH_PRODUCTS
+  SEARCH_PRODUCTS,
+  RESET_QUANTITY
 } from "./Types";
 
 export const getUsers = () => {
@@ -79,6 +80,14 @@ export const addToCart = (product, quantity) => {
     },
   };
 };
+
+export const resetQuantity = (productId) => {
+  return {
+    type: RESET_QUANTITY,
+    payload: productId,
+  };
+};
+
 export const removeFromCart = (productId) => {
   return {
     type: REMOVE_FROM_CART,
