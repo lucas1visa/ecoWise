@@ -1,4 +1,4 @@
-
+const {getcarrito,crearCart,updateCarrito}=require("../controllers/controllersCart")
     const getCart = async (req, res) => {
         try {
             const Carito = await getcarrito()
