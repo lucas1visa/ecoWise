@@ -5,6 +5,8 @@
 }
 .img-fluid{
   width: 60%;
+  margin-top: 65px;
+  margin-bottom: 65px;
 }
 .product-info{
   font-weight: bold;

@@ -1,7 +1,28 @@
 .image-favo{
-    width: 30%; 
+    width: 50%; 
     height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  
 }
 .h2-favo{
     color: aliceblue;
+    margin-top: 20px;
 }
+
+.favoritos-lista {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .favorito-item {
+    display: inline-block;
+    width: calc(33.33% - 10px); 
+    margin: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
