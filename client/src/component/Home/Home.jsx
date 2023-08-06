@@ -6,6 +6,7 @@ const Home = () => {
     state.products});
   return (
     <div>
+   {/*    {products?<CardProducts />:{/* <h1>No Se Encontro Elemento a buscar </h1> */ }
       <CardProducts />
     </div>
   );
