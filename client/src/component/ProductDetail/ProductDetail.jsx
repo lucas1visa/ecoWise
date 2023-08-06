@@ -90,7 +90,7 @@ const ProductDetail = () => {
                     Agregar al carrito
                   </button>
                 </Link>
-                 <MPButton titulo={product.name} precio={product.price} cantidad={1}/>
+                 <MPButton titulo={product.name} precio={product.price} cantidad={5}/>
               </div>
             </div>
           </>
