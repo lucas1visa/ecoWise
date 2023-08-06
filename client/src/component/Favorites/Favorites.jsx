@@ -1,9 +1,16 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 const Favorites = () => {
   const fav = useSelector((state) => state.favorites);
-console.log(fav)
+  console.log(fav)
+  const [removeFav, setRemoveFav] = useState()
+
+const handleRemoveFav = ()=> {
+  dispatch(removeFav(name))
+}
 
   return (
     <div>

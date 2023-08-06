@@ -48,8 +48,6 @@ const CardProducts = () => {
                   </Card.Text>
                   <Link to={`/product/${product.id}`}>
                   <Button className='boton-comprar'>Comprar</Button>
-
-
                   </Link>
                 </Card.Body>
               </Card>

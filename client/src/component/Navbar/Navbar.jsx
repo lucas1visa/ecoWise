@@ -64,6 +64,9 @@ const NavbarComponent = () => {
             <Link to="/contact" className="nav-link">
               Contacto
             </Link>
+            <Link to="/favorites" className="nav-link">
+              Favoritos
+            </Link>
 
             <div className="container-car">
             <Link to="/Cart" className="nav-linkk">
