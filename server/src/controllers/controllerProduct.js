@@ -82,9 +82,10 @@ const searchProductByName = async (name) => {
   const findProduct = await Product.findAll({ where: {
     name: {
       [Op.iLike]: `%${name}%`,
+
     },
   }})
-  console.log(findProduct)
+  console.log('esto es lo que llega al SQL:' + findProduct)
   return findProduct;
 }
 
