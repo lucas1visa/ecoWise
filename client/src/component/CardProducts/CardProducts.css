@@ -1,22 +1,35 @@
-#image-Products{
+#image-Products {
     width: 200px;
     height: 200px;
 }
 
-.home-cards-products{
+.home-cards-products {
     margin-top: 30px;
-
+    display: flex;
+    margin-bottom: 30px;
 }
 
-.mb-4{
+.mb-4 {
     background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    margin-right: 15px;
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 30px;
+    justify-content: space-between;
 }
 
-.boton-comprar{
+.boton-comprar {
     background-color: #62c09b;
     border: none;
+    position: absolute;
+    bottom: 10px; 
+    left: 50%; 
+    transform: translateX(-50%);
+   
 }
 
-.boton-comprar:hover{
+.boton-comprar:hover {
     background-color: #62c09b;
 }
