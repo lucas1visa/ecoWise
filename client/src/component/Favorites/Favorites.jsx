@@ -1,6 +1,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { removeFav } from "../../redux/actions";
+import "./Favorites.css"
 
 
 const Favorites = () => {
@@ -15,17 +16,19 @@ const Favorites = () => {
 
   return (
     <div>
-      <h2>Tus Favoritos</h2>
+      <h2 className="h2-favo">Tus Favoritos</h2>
       {fav.length === 0 ? (
         <p>No Tienes Favoritos 🥹</p>
       ) : (
         <ul>
           {fav.map((product) => (
             <li key={product.id}>
-              <img src={product.image} alt={product.name} />
-              <h3>{product.name}</h3>
-              <p>Price: ${product.price}</p>
-              <button onClick={() => handleRemoveFav(product.id)}>
+              <div  >
+              <img className="image-favo" src={product.image} alt={product.name} />
+              </div>
+              <h3 className="h2-favo">{product.name}</h3>
+              <p className="h2-favo">Precio: ${product.price}</p>
+              <button  onClick={() => handleRemoveFav(product.id)}>
                 Borrar Favoritos
               </button>
             </li>

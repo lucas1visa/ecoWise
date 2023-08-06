@@ -30,6 +30,8 @@
     margin: 10px 0px 0px 10px;
     padding: 0px;
     border: none;
+    color: aliceblue;
+    
 }
 
 .container-car{
@@ -38,4 +40,12 @@
 
 .ecoWise{
     height: 80px;
+}
+
+.button-icon-cora{
+    background-color: transparent;
+    font-size: 25px;
+    margin: 10px 0px 0px 10px;
+    padding: 0px;
+    border: none;
 }

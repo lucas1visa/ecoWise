@@ -64,14 +64,19 @@ const NavbarComponent = () => {
             <Link to="/contact" className="nav-link">
               Contacto
             </Link>
-            <Link to="/favorites" className="nav-link">
-              Favoritos
-            </Link>
+        
 
             <div className="container-car">
             <Link to="/Cart" className="nav-linkk">
               <button className="button-icon-car">
                 <ion-icon name="cart-outline"></ion-icon>
+              </button>
+            </Link>
+            </div>
+            <div >
+            <Link to="/favorites" className="nav-linkk">
+              <button className="button-icon-cora">
+              🤍 
               </button>
             </Link>
             </div>
