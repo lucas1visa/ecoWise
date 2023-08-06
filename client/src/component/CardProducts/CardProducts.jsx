@@ -21,7 +21,6 @@ const CardProducts = () => {
   };
 
   useEffect(() => {
-    // Si cambia la lista de pokémones en el estado redux, reseteamos la página actual a la primera
     setCurrentPage(1);
   }, [products]);
 
@@ -33,13 +32,8 @@ const CardProducts = () => {
 
   return (
 
-
-
-    <div>
-
-
-
-
+    <div className='home-cards-products'>
+ 
       <Container>
         <Row>
           {currentProducts.map((product) => (

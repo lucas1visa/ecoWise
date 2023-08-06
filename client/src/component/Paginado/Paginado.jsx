@@ -21,6 +21,8 @@ const Paginado = ({ productsPerPage, totalProducts, currentPage, onPageChange })
     const renderPaginationItems = () => {
         const paginationItems = [];
 
+        
+
         paginationItems.push(
             <li key="prev">
                 <button
