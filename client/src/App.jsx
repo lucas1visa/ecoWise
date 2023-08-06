@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,7 +7,6 @@ import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3001";
 import Home from './component/Home/Home';
 import { getProducts } from './redux/actions';
-// import Landing from './component/Landing/Landing';
 import NavbarComponent from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
 import UserProfile from './component/UserProfile/UserProfile';
@@ -16,24 +15,19 @@ import Cart from './component/ShoppingCar/Cart';
 import ProductDetail from "./component/ProductDetail/ProductDetail"
 import Favorites from "./component/Favorites/Favorites"
 import About from './component/About/About';
-import MPButton from './component/MPButton/MPButton';
 
 
 function App() {
-  
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProducts());
   }, []);
-
   return (
     <div className="App-container">
       <div className="container">
         <div> <NavbarComponent /></div>
         <Routes>
-        <Route path='/mercadopago' element={<MPButton/>} />
-       { /*  <Route path='/' element={<Landing />}  /> */ }
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/account/register/" element={<UserProfile />} />
