@@ -55,11 +55,11 @@ const ProductDetail = () => {
               {favorites.find((favProduct) => favProduct.id === product.id) ? (
                 <p>Agregado a Favoritos</p>
               ) : (
-                <Link to='/favorites'>
+                
                 <button className="btn btn-button" onClick={handleAddFavorite}>
                   🤍 
                 </button>
-                </Link>
+               
               )}
               <div className="quantity-select d-flex align-items-center ms-sm-5">
                 <label htmlFor="quantity-select">Cantidad:</label>
