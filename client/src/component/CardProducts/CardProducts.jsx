@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import '../CardProducts/CardProducts.css'
-import MPButton from '../MPButton/MPButton';
 import '../CardProducts/CardProducts.css';
 import Paginado from '../Paginado/Paginado'; // Asegúrate de que la ruta sea correcta.
 
@@ -21,7 +20,6 @@ const CardProducts = () => {
   };
 
   useEffect(() => {
-    // Si cambia la lista de pokémones en el estado redux, reseteamos la página actual a la primera
     setCurrentPage(1);
   }, [products]);
 
@@ -33,20 +31,14 @@ const CardProducts = () => {
 
   return (
 
-
-
-    <div>
-
-
-
-
+    <div className='home-cards-products'>
+ 
       <Container>
         <Row>
           {currentProducts.map((product) => (
             <Col key={product.id} md={4}>
               <Card className="mb-4">
                 <Link to={`/product/${product.id}`}>
-                  <Button variant="primary">Comprar</Button>
                   <Card.Img variant="top" src={product.image} alt={product.name} id='image-Products' />
                 </Link>
                 <Card.Body>
@@ -55,7 +47,9 @@ const CardProducts = () => {
                   <Card.Text>Precio: ${product.price}
                   </Card.Text>
                   <Link to={`/product/${product.id}`}>
-                    <Button variant="primary">Ver detalles</Button>
+                  <Button variant="primary">Comprar</Button>
+
+
                   </Link>
                 </Card.Body>
               </Card>

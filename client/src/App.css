@@ -5,6 +5,11 @@
 .App-container {
   text-align: center;
 }
+
+body{
+  background-image: url('../../client/src/Img/ecoWise.png');
+}
+
 /*.logo {
   height: 6em;
   padding: 1.5em;
