@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import '../CardProducts/CardProducts.css'
-import MPButton from '../MPButton/MPButton';
 import '../CardProducts/CardProducts.css';
 import Paginado from '../Paginado/Paginado'; // Asegúrate de que la ruta sea correcta.
 
@@ -40,7 +39,6 @@ const CardProducts = () => {
             <Col key={product.id} md={4}>
               <Card className="mb-4">
                 <Link to={`/product/${product.id}`}>
-                  <Button variant="primary">Comprar</Button>
                   <Card.Img variant="top" src={product.image} alt={product.name} id='image-Products' />
                 </Link>
                 <Card.Body>
@@ -49,7 +47,9 @@ const CardProducts = () => {
                   <Card.Text>Precio: ${product.price}
                   </Card.Text>
                   <Link to={`/product/${product.id}`}>
-                    <Button variant="primary">Ver detalles</Button>
+                  <Button variant="primary">Comprar</Button>
+
+
                   </Link>
                 </Card.Body>
               </Card>

@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3001";
 import Home from './component/Home/Home';
 import { getProducts } from './redux/actions';
-import Landing from './component/Landing/Landing';
+// import Landing from './component/Landing/Landing';
 import NavbarComponent from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
 import UserProfile from './component/UserProfile/UserProfile';
@@ -20,7 +20,7 @@ import MPButton from './component/MPButton/MPButton';
 
 
 function App() {
-  const { pathname } = useLocation();
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,12 +30,11 @@ function App() {
   return (
     <div className="App-container">
       <div className="container">
-        <div>{pathname !== '/' && <NavbarComponent />}</div>
+        <div> <NavbarComponent /></div>
         <Routes>
         <Route path='/mercadopago' element={<MPButton/>} />
-          <Route path='/' element={<Landing />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
+       { /*  <Route path='/' element={<Landing />}  /> */ }
+          <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/product/register/" element={<NewProduct />} />
@@ -43,7 +42,7 @@ function App() {
           <Route path='product/:id' element={<ProductDetail/>}/>
           <Route path='/about'element={<About/>} />
         </Routes>
-        <div>{pathname !== '/' && <Footer />}</div>
+        <div><Footer /></div>
       </div>
     </div>
   );
