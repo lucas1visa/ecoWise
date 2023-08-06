@@ -49,16 +49,16 @@ const NavbarComponent = () => {
   return (
     <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
       <Container>
-        <Link to="/home" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           ecoWise
         </Link>
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">
           <Nav className="ml-auto">
-            <Link to="/home" className="nav-link">
+            <Link to="/" className="nav-link">
               Inicio
             </Link>
-            <Link to="/" className="nav-link">
+            <Link to="/about" className="nav-link">
               Acerca
             </Link>
             <Link to="/contact" className="nav-link">
