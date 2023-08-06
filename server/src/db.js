@@ -28,15 +28,17 @@ let entries = Object.entries(sequelize.models);// Obtenemos las entradas (claves
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);// Convertimos las claves (nombres de modelos) a un formato donde la primera letra es mayúscula y el resto es minúscula
 sequelize.models = Object.fromEntries(capsEntries);// Convertimos las entradas modificadas nuevamente en un objeto y asignamos este objeto al atributo "models" de la instancia "sequelize
 
-const { User, Sale, Product, Purchase , Category} = sequelize.models;// Obtenemos los modelos de la base de datos (Country y Activity) a través de la instancia de Sequelize "sequelize"
+const { User, Sale, Product, Purchase , Category, Favorite} = sequelize.models;// Obtenemos los modelos de la base de datos (Country y Activity) a través de la instancia de Sequelize "sequelize"
 
 User.hasMany(Product);// hasMany: de uno a muchos
 User.hasMany(Purchase);
 User.hasMany(Sale);
+User.hasMany(Favorite)
 
 Product.belongsTo(User);// belongsT: de uno a uno
 Purchase.belongsTo(User);
 Sale.belongsTo(User);
+Favorite.belongsTo(User)
 
 Product.belongsToMany(Purchase, { through: 'Purchase_Producto' });// belongsToMany: de muchos a muchos
 Purchase.belongsToMany(Product, { through: 'Purchase_Producto' });
