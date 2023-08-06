@@ -16,14 +16,15 @@ const Search = () => {
     };
   
     return (
-      <div className={styles.containerSearch}>
+      <div className={styles.containerSearch} >
         <input
           type="text"
           placeholder="Productos"
           value={productName} // Establece el valor del input desde el estado
           onChange={(event) => setProductName(event.target.value)} // Actualiza el estado cuando cambia el input
+          className={styles.inputSearch}
         />
-        <button onClick={handleChange}>buscar</button>
+        <button onClick={handleChange} className={styles.buttonsearch}><ion-icon name="search-outline"></ion-icon></button>
       </div>
     );
   };

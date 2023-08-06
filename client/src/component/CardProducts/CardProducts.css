@@ -11,3 +11,12 @@
 .mb-4{
     background-color: #ffffff;
 }
+
+.boton-comprar{
+    background-color: #62c09b;
+    border: none;
+}
+
+.boton-comprar:hover{
+    background-color: #62c09b;
+}

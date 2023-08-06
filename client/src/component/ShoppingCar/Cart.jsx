@@ -22,7 +22,7 @@ const Cart = () => {
           </li>
         ))}
       </ul>
-      <Link to='/home' className='nav-link'>
+      <Link to='/' className='nav-link'>
         <button>Home</button>
       </Link>
     </div>

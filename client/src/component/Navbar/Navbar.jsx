@@ -2,7 +2,7 @@
 import CategorySelect from "../Filters/Filter";
 import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import carritoImage from "../image/carrito2.png";
+import eco from "../../Img/eco.png";
 import "../Navbar/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -50,7 +50,7 @@ const NavbarComponent = () => {
     <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
       <Container>
         <Link to="/" className="navbar-brand">
-          ecoWise
+         <img src={eco} alt="ecoWise" className="ecoWise"/>
         </Link>
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">
@@ -65,23 +65,15 @@ const NavbarComponent = () => {
               Contacto
             </Link>
 
-            {/* <Link to="/product/register" className="nav-link">
-              Crear Producto X
-            </Link> */}
-            <Link to="/Cart" className="nav-link">
-              <img
-                className="nav-image-carrito"
-                src={carritoImage}
-                alt="Carrito de compras"
-                style={{
-                  width: "30%",
-                  height: "auto",
-                  maxWidth: "30vw",
-                  maxHeight: "15vh",
-                }}
-              />
+            <div className="container-car">
+            <Link to="/Cart" className="nav-linkk">
+              <button className="button-icon-car">
+                <ion-icon name="cart-outline"></ion-icon>
+              </button>
             </Link>
+            </div>
           </Nav>
+
           {isHomePage && <Search />}
         </Navbar.Collapse>
 
@@ -91,7 +83,7 @@ const NavbarComponent = () => {
             onClick={handleOrderChange}
             value="clean"
           >
-            ALL
+            <ion-icon name="reload-outline"></ion-icon>
           </button>
         )}
 

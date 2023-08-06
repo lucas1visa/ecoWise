@@ -4,6 +4,8 @@
     border-radius: 5px;
     margin: 50px;
     width: px;
+    display: flex;
+    align-items: center;
 }
 .containerSearch input {
     background-color: #fff;
@@ -17,7 +19,23 @@
     transition: box-shadow 0.3s ease;
   }
   
-  .containerSearch input:focus {
+.containerSearch input:focus {
     outline: none;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
-  }
+}
+
+.buttonsearch{
+  border: solid 2px black;
+  height: 33px;
+  width: 40px;
+  text-align: center;
+  padding: 4px 10px 14px 9px;
+}
+
+
+.inputSearch{
+  height: 30px;
+}
+
+
+

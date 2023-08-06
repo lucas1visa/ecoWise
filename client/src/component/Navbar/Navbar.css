@@ -5,6 +5,8 @@
 
 .nav-link{
     color: aliceblue;
+    margin-top: 13px;
+    font-size: 18px;
 }
 
 .navbar-brand{
@@ -13,11 +15,27 @@
 }
 
 .prolijo-button {
-    padding: 1px 40px; /* Ajusta el padding según tus preferencias */
-    background-color: #080000; /* Cambia el color de fondo según tus preferencias */
+    padding: 2px 13px 0px 13px; /* Ajusta el padding según tus preferencias */
+    background-color: transparent; /* Cambia el color de fondo según tus preferencias */
     border: 1px solid #ccc; /* Cambia el estilo del borde según tus preferencias */
     border-radius: 5px; /* Ajusta el radio del borde según tus preferencias */
     cursor: pointer;
     font-size: 16px; /* Ajusta el tamaño de fuente según tus preferencias */
-    
-  }
+
+}
+
+.button-icon-car{
+    background-color: transparent;
+    font-size: 33px;
+    margin: 10px 0px 0px 10px;
+    padding: 0px;
+    border: none;
+}
+
+.container-car{
+    margin-top: 0px;
+}
+
+.ecoWise{
+    height: 80px;
+}

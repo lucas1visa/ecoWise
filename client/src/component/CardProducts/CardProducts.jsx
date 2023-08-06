@@ -47,7 +47,7 @@ const CardProducts = () => {
                   <Card.Text>Precio: ${product.price}
                   </Card.Text>
                   <Link to={`/product/${product.id}`}>
-                  <Button variant="primary">Comprar</Button>
+                  <Button className='boton-comprar'>Comprar</Button>
 
 
                   </Link>

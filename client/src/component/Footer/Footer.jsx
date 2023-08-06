@@ -1,15 +1,22 @@
 import React from 'react';
+import ecoWise from '../Footer/EcoWise.jpg'
+
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-white text-center py-3">
+    <footer className=" bg-dark text-white text-center py-0" >
       <div className="container-fluid">
-        <div className='row p-5 bg-dark text-white'>
+        <div className='row p-3 bg-dark text-white'>
 
           <div className="col-xs-12 col-md-6 col-lg-3">
-            <p className='h3'>ecoWise</p>
+          <p></p>
+          <p></p>
+          <p></p>
+            
+          <img src={ecoWise} alt="ecoWise" className="w-50 h-30 rounded"/>
           </div>
-          
+
+
           <div className="col-xs-12 col-md-6 col-lg-3">
             <p className="h5 mb-3">Contactos</p>
             <div>
@@ -43,10 +50,10 @@ const Footer = () => {
             </div>
             
           </div>
+            <a className='text-secondary text-decoration-none' href="">Terminos y condiciones / Devoluciones </a>
           
         </div>
         <div>
-            <a className='text-secondary text-decoration-none' href="">Terminos y condiciones / Devoluciones </a>
             </div>
            
       </div>
