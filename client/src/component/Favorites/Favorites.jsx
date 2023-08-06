@@ -1,22 +1,23 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import { removeFav } from "../../redux/actions";
 
 
 const Favorites = () => {
+  const dispatch = useDispatch()
+
   const fav = useSelector((state) => state.favorites);
   console.log(fav)
-  const [removeFav, setRemoveFav] = useState()
 
-const handleRemoveFav = ()=> {
-  dispatch(removeFav(name))
+  const handleRemoveFav = (productId)=> {
+    dispatch(removeFav(productId))
 }
 
   return (
     <div>
-      <h2>Favorites</h2>
+      <h2>Tus Favoritos</h2>
       {fav.length === 0 ? (
-        <p>No favorite products yet.</p>
+        <p>No Tienes Favoritos 🥹</p>
       ) : (
         <ul>
           {fav.map((product) => (
@@ -24,8 +25,8 @@ const handleRemoveFav = ()=> {
               <img src={product.image} alt={product.name} />
               <h3>{product.name}</h3>
               <p>Price: ${product.price}</p>
-              <button >
-                Remove from Favorites
+              <button onClick={() => handleRemoveFav(product.id)}>
+                Borrar Favoritos
               </button>
             </li>
           ))}
