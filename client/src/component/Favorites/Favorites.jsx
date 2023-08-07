@@ -8,7 +8,7 @@ const Favorites = () => {
   const dispatch = useDispatch()
 
   const fav = useSelector((state) => state.favorites);
-  console.log(fav)
+  console.log(typeof fav)
 
   const handleRemoveFav = (productId)=> {
     dispatch(removeFav(productId))

@@ -53,15 +53,17 @@ export function getId(id) {
 }
 
 export function addFav(product) {
+  console.log(product)
   return async function (dispatch) {
     try {
-      const {data} = await axios.post(
+      await axios.post(
         `/favorits`,
         product
       );
+      console.log('hola ' + product )
       return dispatch({
         type: ADD_FAV,
-        payload: data,
+        payload: product,
       });
     } catch (error) {
       console.log("addFav not found", error);
