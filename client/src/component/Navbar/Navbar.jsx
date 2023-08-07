@@ -15,7 +15,7 @@ import {
 import Search from "../SearchBar/SearchBar";
 import { useState } from "react";
 // importamos todos los componentes de para el formulario de login
-import { Button, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 // importamos la funcion de validacion para los inputs
 import validate from "./validate";
 
