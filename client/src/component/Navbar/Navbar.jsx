@@ -23,6 +23,9 @@ const NavbarComponent = () => {
   const location = useLocation();
   const productListRedux = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const favoriteCount = useSelector((state) => state.favoriteCount);
+  const CartCount = useSelector((state) => state.cartCount);
+   
   // ====================================== VENTANA EMERGENTE PARA LOOGIN ============================================
   // estado para controlar la apertura o cierre de la ventana emergente
   const [showLogin, setShowLogin] = useState({
@@ -122,12 +125,14 @@ const NavbarComponent = () => {
           <Link to="/Cart" className="nav-linkk">
             <button className="button-icon-car">
               <ion-icon name="cart-outline"></ion-icon>
+              {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
             </button>
           </Link>
         </div>
         <div>
           <Link to="/favorites" className="nav-linkk">
             <button className="button-icon-cora">🤍</button>
+            {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
           </Link>
         </div>
       </Nav>
