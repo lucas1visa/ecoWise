@@ -188,8 +188,8 @@ const NavbarComponent = () => {
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={handleLogin}>Cerrar</Button>
-          <Link to="/account/register/">Sing Up</Link>
-          <Link>Recuperar Password</Link>
+          <Link to="/account/register/">Registrarse</Link>
+          <Link>Recuperar Contraseña</Link>
         </ModalFooter>
       </Modal>
       {/* ============================================= TERMINACION DE LOGIN ====================================================== */}
