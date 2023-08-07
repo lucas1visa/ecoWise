@@ -47,7 +47,7 @@ const CardProducts = () => {
               onMouseLeave={handleMouseLeave}
             >
               <Link to={`/product/${product.id}`}>
-                <Card.Img variant="top" src={product.image} alt={product.name} className="card-image" />
+                <Card.Img  src={product.image} alt={product.name} className="card-image" />
                 {hoveredProductId === product.id && (
                   <div className="hover-button">
                     <Link to={`/product/${product.id}`} className='boton-comprar'>
