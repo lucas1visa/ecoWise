@@ -28,8 +28,6 @@ const ProductDetail = () => {
       dispatch(addFav(product));
     }
   };
-  console.log(product);
-
   return (
     <div className="custom-container">
       <div className="container-fluid">

@@ -14,7 +14,7 @@ const Home = () => {
             alt=""
             className="title-icon"
           />
-        <h2 className="font-weight-bold"></h2>
+        <h6 className="font-weight-bold"></h6>
       </div>
       <CardProducts />
     </div>

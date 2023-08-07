@@ -11,15 +11,15 @@
     height:60px;
   }
   
-  h2 {
+  h6 {
     position: relative;
     display: inline-block;
     padding: 0 10px;
     font-size: 24px;
   }
   
-  h2:before,
-  h2:after {
+  h6:before,
+  h6:after {
     content: "";
     position: absolute;
     top: 50%;
@@ -28,11 +28,11 @@
     background-color: black;
   }
   
-  h2:before {
+  h6:before {
     left: -70px;
   }
   
-  h2:after {
+  h6:after {
     right: -70px;
   }
   
