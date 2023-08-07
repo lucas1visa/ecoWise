@@ -197,7 +197,6 @@ const UserProfile = () => {
   return (
     <div>
       <FormGroup>
-        <
         <form onSubmit={handleSubmit}>
           {/* Campos del formulario */}
           <div>

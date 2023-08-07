@@ -118,9 +118,6 @@ const NavbarComponent = () => {
             <Link to="/contact" className="nav-link">
               Contacto
             </Link>
-
-
-
             <div className="container-car">
               <Link to="/Cart" className="nav-linkk">
                 <button className="button-icon-car">
