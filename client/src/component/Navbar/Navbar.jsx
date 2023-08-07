@@ -1,7 +1,7 @@
 //import React from 'react';
 import CategorySelect from "../Filters/Filter";
 import { useSelector, useDispatch } from "react-redux";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import eco from "../../Img/eco.png";
 import "../Navbar/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
@@ -133,35 +133,41 @@ const NavbarComponent = () => {
                 <button className="button-icon-cora">
                   🤍
                 </button>
+            <div>
+              <Link to="/favorites" className="nav-linkk">
+                <button className="button-icon-cora">🤍</button>
               </Link>
             </div>
           </Nav>
 
           {isHomePage && <Search />}
-        </Navbar.Collapse>
 
-        {isHomePage && (
-          <button
-            className="prolijo-button"
-            onClick={handleOrderChange}
-            value="clean"
-          >
-            <ion-icon name="reload-outline"></ion-icon>
-          </button>
-        )}
+          {isHomePage && (
+            <Button
+              className="prolijo-button"
+              onClick={handleOrderChange}
+              value="clean"
+            >
+              <ion-icon name="reload-outline"></ion-icon>
+            </Button>
+          )}
 
-        <div>{isHomePage && <CategorySelect />}</div>
-        {isHomePage && (
-          <div>
-            <select onChange={handleOrderChange}>
-              <option value="clea">Order By</option>
-              <option value="upward">Order A-Z</option>
-              <option value="falling">Order Z-A</option>
-              <option value="price">Mas Caros</option>
-              <option value="pricent">Mas Baratos</option>
-            </select>
+          <div className="ml-auto m-2">
+            {isHomePage && <CategorySelect />}
           </div>
-        )}
+
+          {isHomePage && (
+            <div className="">
+              <select className="form-control" onChange={handleOrderChange}>
+                <option value="clea">Order By</option>
+                <option value="upward">Order A-Z</option>
+                <option value="falling">Order Z-A</option>
+                <option value="price">Mas Caros</option>
+                <option value="pricent">Mas Baratos</option>
+              </select>
+            </div>
+          )}
+        </Navbar.Collapse>
       </Container>
       {/*=============================================== REGISTRO DE LOGIN ================================================= */}
       <button onClick={handleLogin}>Login</button>

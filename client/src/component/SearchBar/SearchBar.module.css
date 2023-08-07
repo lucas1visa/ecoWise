@@ -11,7 +11,7 @@
     background-color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px;
+    padding: 18px;
     width: 100%;
     font-size: 16px;
     color: #333;
@@ -22,14 +22,6 @@
 .containerSearch input:focus {
     outline: none;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
-}
-
-.buttonsearch{
-  border: solid 2px black;
-  height: 33px;
-  width: 40px;
-  text-align: center;
-  padding: 4px 10px 14px 9px;
 }
 
 

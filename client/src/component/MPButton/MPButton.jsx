@@ -1,18 +1,21 @@
 import { useState } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
+import "./MPButton.css"
+
 const publicKey = import.meta.env.VITE_PublicKey;
 console.log(publicKey)
-const MPButton = ({titulo,precio,cantidad}) => {
+const MPButton = ({titul,precio,cantidad}) => {
   const [preferenceId, setPreferenceId] = useState(null);
   const [loading, setLoading] = useState(false);
+  console.log(titul)
 
   initMercadoPago(publicKey);
 
   const createPreference = async () => {
     try {
       const response = await axios.post("http://localhost:3001/create_preference", {
-        description: titulo,
+        description: titul,
         price: precio,
         quantity: cantidad,
       });
@@ -41,10 +44,10 @@ const MPButton = ({titulo,precio,cantidad}) => {
     <div>
       <div>
         <div>
-          <button onClick={handleBuy} disabled={loading}>
+          <button className="buttons" onClick={handleBuy} disabled={loading}>
             {loading ? 'Cargando...' : 'Comprar'}
           </button>
-          {preferenceId && <Wallet initialization={{ preferenceId }} />}
+          {preferenceId && <Wallet initialization={{ preferenceId }}  />}
         </div>
       </div>
     </div>
