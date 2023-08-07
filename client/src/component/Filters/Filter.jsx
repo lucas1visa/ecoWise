@@ -17,8 +17,7 @@ function CategorySelect() {
 
     return (
         <div>
-            <label htmlFor="categorySelect"></label>
-            <select id="categorySelect" value={selectedCategory} onChange={handleCategoryChange}>
+            <select id="categorySelect" value={selectedCategory} onChange={handleCategoryChange} className="form-control">
                 <option value="">Seleccione una categoría</option>
                 {categories.map((category) => (
                     <option key={category} value={category}>

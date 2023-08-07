@@ -14,7 +14,7 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const favorites = useSelector((state) => state.favorites);
-  console.log(favorites)
+  console.log(quantity)
 
   useEffect(() => {
     dispatch(getId(id));
@@ -29,6 +29,7 @@ const ProductDetail = () => {
       dispatch(addFav(product)); 
     }
   };
+  console.log(product)
   
 
   return (
@@ -91,7 +92,7 @@ const ProductDetail = () => {
                     Agregar al carrito
                   </button>
                 </Link>
-                 <MPButton titulo={product.name} precio={product.price} cantidad={5}/>
+                 <MPButton titul={`${product.name}`} precio={product.price} cantidad={quantity}/>
               </div>
             </div>
           </>

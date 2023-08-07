@@ -3,16 +3,17 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 const publicKey = import.meta.env.VITE_PublicKey;
 console.log(publicKey)
-const MPButton = ({titulo,precio,cantidad}) => {
+const MPButton = ({titul,precio,cantidad}) => {
   const [preferenceId, setPreferenceId] = useState(null);
   const [loading, setLoading] = useState(false);
+  console.log(titul)
 
   initMercadoPago(publicKey);
 
   const createPreference = async () => {
     try {
       const response = await axios.post("http://localhost:3001/create_preference", {
-        description: titulo,
+        description: titul,
         price: precio,
         quantity: cantidad,
       });

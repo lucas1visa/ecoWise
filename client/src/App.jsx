@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3001";
@@ -15,7 +14,6 @@ import Cart from './component/ShoppingCar/Cart';
 import ProductDetail from "./component/ProductDetail/ProductDetail"
 import Favorites from "./component/Favorites/Favorites"
 import About from './component/About/About';
-
 
 function App() {
   const dispatch = useDispatch();
