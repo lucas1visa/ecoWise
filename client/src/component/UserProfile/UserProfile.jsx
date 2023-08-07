@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 // import "./userProfile.css";
 import { postUser } from "../../redux/actions/index";
+import styles from "../UserProfile/UserProfile.module.css"
+import { FormGroup } from "reactstrap";
 
 const UserProfile = () => {
   // Dispatch para enviar acciones de Redux
@@ -194,114 +196,117 @@ const UserProfile = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        {/* Campos del formulario */}
-        <div>
-          <label>Nombre</label>
-          <input
-            type="text"
-            name="name"
-            value={state.name}
-            onChange={handleChange}
-          />
-          {errors.name}
-        </div>
-        <div>
-          <label>Apellido</label>
-          <input
-            type="text"
-            name="surname"
-            value={state.surname}
-            onChange={handleChange}
-          />
-          {errors.surname}
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type="text"
-            name="email"
-            value={state.email}
-            onChange={handleChange}
-          />
-          {errors.email}
-        </div>
-        <div>
-          <label>Telefono</label>
-          <input
-            type="text"
-            name="phone"
-            value={state.phone}
-            onChange={handleChange}
-          />
-          {errors.phone}
-        </div>
-        <div>
-          <label>Contraseña</label>
-          <div style={{ position: "relative" }}>
+      <FormGroup>
+        <
+        <form onSubmit={handleSubmit}>
+          {/* Campos del formulario */}
+          <div>
+            <label>Nombre</label>
             <input
-              // type="password"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={state.password}
+              type="text"
+              name="name"
+              value={state.name}
               onChange={handleChange}
             />
-            {/* Botón para alternar la visibilidad de la contraseña */}
-            <button
-              type="button"
-              onClick={toggleShowPassword}
-              style={{
-                position: "absolute",
-                top: "50%",
-                right: "10px",
-                transform: "translateY(-50%)",
-                backgroundColor: "transparent",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              {showPassword ? "👁️" : "👁️‍🗨️"}
-            </button>
+            {errors.name}
           </div>
-          {errors.password}
-        </div>
-        {/* Campo de confirmación de contraseña */}
-        <div>
-          <label>Confirmar Contraseña</label>
-          <div style={{ position: "relative" }}>
+          <div>
+            <label>Apellido</label>
             <input
-              // type="password"
-              type={showConfirmPassword ? "text" : "password"}
-              name="confirmPassword"
-              value={state.confirmPassword}
+              type="text"
+              name="surname"
+              value={state.surname}
               onChange={handleChange}
             />
-            {/* Botón para alternar la visibilidad de la contraseña de confirmación */}
-            <button
-              type="button"
-              onClick={toggleShowConfirmPassword}
-              style={{
-                position: "absolute",
-                top: "50%",
-                right: "10px",
-                transform: "translateY(-50%)",
-                backgroundColor: "transparent",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
-            </button>
+            {errors.surname}
           </div>
-          {errors.confirmPassword}
-        </div>
-        {/* Mensaje de confirmación */}
-        {userCreated && <p>¡Usuario creado correctamente!</p>}
-        {/* Botón de envío */}
-        <button disabled={disable()} type="submit">
-          Submit
-        </button>
-      </form>
+          <div>
+            <label>Email</label>
+            <input
+              type="text"
+              name="email"
+              value={state.email}
+              onChange={handleChange}
+            />
+            {errors.email}
+          </div>
+          <div>
+            <label>Telefono</label>
+            <input
+              type="text"
+              name="phone"
+              value={state.phone}
+              onChange={handleChange}
+            />
+            {errors.phone}
+          </div>
+          <div>
+            <label>Contraseña</label>
+            <div style={{ position: "relative" }}>
+              <input
+                // type="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={state.password}
+                onChange={handleChange}
+              />
+              {/* Botón para alternar la visibilidad de la contraseña */}
+              <button
+                type="button"
+                onClick={toggleShowPassword}
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  right: "10px",
+                  transform: "translateY(-50%)",
+                  backgroundColor: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                {showPassword ? "👁️" : "👁️‍🗨️"}
+              </button>
+            </div>
+            {errors.password}
+          </div>
+          {/* Campo de confirmación de contraseña */}
+          <div>
+            <label>Confirmar Contraseña</label>
+            <div style={{ position: "relative" }}>
+              <input
+                // type="password"
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                value={state.confirmPassword}
+                onChange={handleChange}
+              />
+              {/* Botón para alternar la visibilidad de la contraseña de confirmación */}
+              <button
+                type="button"
+                onClick={toggleShowConfirmPassword}
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  right: "10px",
+                  transform: "translateY(-50%)",
+                  backgroundColor: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
+              </button>
+            </div>
+            {errors.confirmPassword}
+          </div>
+          {/* Mensaje de confirmación */}
+          {userCreated && <p>¡Usuario creado correctamente!</p>}
+          {/* Botón de envío */}
+          <button disabled={disable()} type="submit">
+            Submit
+          </button>
+        </form>
+      </FormGroup>
     </div>
   );
 };

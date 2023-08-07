@@ -13,11 +13,65 @@ import {
   getProducts,
 } from "../../redux/actions";
 import Search from "../SearchBar/SearchBar";
+import { useState } from "react";
+// importamos todos los componentes de para el formulario de login
+import { Button, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+// importamos la funcion de validacion para los inputs
+import validate from "./validate";
 
 const NavbarComponent = () => {
   const location = useLocation();
   const productListRedux = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  // ====================================== VENTANA EMERGENTE PARA LOOGIN ============================================
+  // estado para controlar la apertura o cierre de la ventana emergente
+  const [showLogin, setShowLogin] = useState({
+    open: false
+  });
+  // estado local para controlar la informacion en los inputs 
+  const [valuesInputs, setValuesInputs] = useState({
+    email: "",
+    password: ""
+  });
+  // estado para almacenar los errores de los inputs
+  const [err, setErr] = useState({});
+  // funcion para captura la informacion y almacenarla en el estado local
+  const handleChangeInput = (event) => {
+    const { name, value } = event.target;
+    setValuesInputs({ ...valuesInputs, [name]: value })
+  };
+  // funcion para cerrar el login
+  const handleLogin = () => {
+    setShowLogin({
+      open: !showLogin.open
+    })
+  }
+  // funcion para despachar la informacion de los inputs y almacenarlo en la DB
+  const handleSubmitLogin = (e) => {
+    e.preventDefault();
+    // controlamos y validamos los inputs
+    let errorinput = validate(valuesInputs);
+    // en caso de que exista algun error los almacenamos en el estado local
+    setErr(errorinput);
+    //si no existe ningun error despachamos la info
+    if (Object.keys(errorinput).length === 0) {
+      //dejamos de mostrar el componente login
+      setShowLogin({
+        open: false
+      });
+      // limpiamos los inputs
+      setValuesInputs({
+        email: "",
+        password: ""
+      })
+      // despachamos la informacion
+      console.log('se envio che');
+    } else {
+      console.log('hay errores man');
+    }
+
+  }
+  // =========================================================================================================================
 
   const isHomePage = location.pathname === "/";
 
@@ -50,7 +104,7 @@ const NavbarComponent = () => {
     <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
       <Container>
         <Link to="/" className="navbar-brand">
-         <img src={eco} alt="ecoWise" className="ecoWise"/>
+          <img src={eco} alt="ecoWise" className="ecoWise" />
         </Link>
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">
@@ -64,21 +118,22 @@ const NavbarComponent = () => {
             <Link to="/contact" className="nav-link">
               Contacto
             </Link>
-        
+
+
 
             <div className="container-car">
-            <Link to="/Cart" className="nav-linkk">
-              <button className="button-icon-car">
-                <ion-icon name="cart-outline"></ion-icon>
-              </button>
-            </Link>
+              <Link to="/Cart" className="nav-linkk">
+                <button className="button-icon-car">
+                  <ion-icon name="cart-outline"></ion-icon>
+                </button>
+              </Link>
             </div>
             <div >
-            <Link to="/favorites" className="nav-linkk">
-              <button className="button-icon-cora">
-              🤍 
-              </button>
-            </Link>
+              <Link to="/favorites" className="nav-linkk">
+                <button className="button-icon-cora">
+                  🤍
+                </button>
+              </Link>
             </div>
           </Nav>
 
@@ -108,6 +163,34 @@ const NavbarComponent = () => {
           </div>
         )}
       </Container>
+      {/*=============================================== REGISTRO DE LOGIN ================================================= */}
+      <button onClick={handleLogin}>Login</button>
+      <Modal isOpen={showLogin.open}>
+        <ModalHeader>
+          Iniciar Sesion
+        </ModalHeader>
+        <ModalBody>
+          <form onSubmit={handleSubmitLogin}>
+            <FormGroup>
+              <Label>email</Label>
+              <Input type="text" name="email" value={valuesInputs.email} onChange={handleChangeInput} />
+              <p>{err.email}</p>
+            </FormGroup>
+            <FormGroup>
+              <Label>password</Label>
+              <Input type="password" name="password" value={valuesInputs.password} onChange={handleChangeInput} />
+              <p>{err.password}</p>
+            </FormGroup>
+            <Button color="primary" type="submit">Iniciar Sesion</Button>
+          </form>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={handleLogin}>Cerrar</Button>
+          <Link to="/account/register/">Sing Up</Link>
+          <Link>Recuperar Password</Link>
+        </ModalFooter>
+      </Modal>
+      {/* ============================================= TERMINACION DE LOGIN ====================================================== */}
     </Navbar>
   );
 };
