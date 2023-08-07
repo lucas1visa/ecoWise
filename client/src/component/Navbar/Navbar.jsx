@@ -102,70 +102,64 @@ const NavbarComponent = () => {
 
   return (
     <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
-      <Container>
-        <Link to="/" className="navbar-brand">
-          <img src={eco} alt="ecoWise" className="ecoWise" />
+  <Container>
+    <Link to="/" className="navbar-brand">
+      <img src={eco} alt="ecoWise" className="ecoWise" />
+    </Link>
+    <Navbar.Toggle aria-controls="navbar" />
+    <Navbar.Collapse id="navbar">
+      <Nav className="ml-auto">
+        <Link to="/" className="nav-link">
+          Inicio
         </Link>
-        <Navbar.Toggle aria-controls="navbar" />
-        <Navbar.Collapse id="navbar">
-          <Nav className="ml-auto">
-            <Link to="/" className="nav-link">
-              Inicio
-            </Link>
-            <Link to="/about" className="nav-link">
-              Acerca
-            </Link>
-            <Link to="/contact" className="nav-link">
-              Contacto
-            </Link>
-            <div className="container-car">
-              <Link to="/Cart" className="nav-linkk">
-                <button className="button-icon-car">
-                  <ion-icon name="cart-outline"></ion-icon>
-                </button>
-              </Link>
-            </div>
-            <div >
-              <Link to="/favorites" className="nav-linkk">
-                <button className="button-icon-cora">
-                  🤍
-                </button>
-            <div>
-              <Link to="/favorites" className="nav-linkk">
-                <button className="button-icon-cora">🤍</button>
-              </Link>
-            </div>
-          </Nav>
+        <Link to="/about" className="nav-link">
+          Acerca
+        </Link>
+        <Link to="/contact" className="nav-link">
+          Contacto
+        </Link>
+        <div className="container-car">
+          <Link to="/Cart" className="nav-linkk">
+            <button className="button-icon-car">
+              <ion-icon name="cart-outline"></ion-icon>
+            </button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/favorites" className="nav-linkk">
+            <button className="button-icon-cora">🤍</button>
+          </Link>
+        </div>
+      </Nav>
 
-          {isHomePage && <Search />}
+      {isHomePage && <Search />}
 
-          {isHomePage && (
-            <Button
-              className="prolijo-button"
-              onClick={handleOrderChange}
-              value="clean"
-            >
-              <ion-icon name="reload-outline"></ion-icon>
-            </Button>
-          )}
+      {isHomePage && (
+        <Button
+          className="prolijo-button"
+          onClick={handleOrderChange}
+          value="clean"
+        >
+          <ion-icon name="reload-outline"></ion-icon>
+        </Button>
+      )}
 
-          <div className="ml-auto m-2">
-            {isHomePage && <CategorySelect />}
-          </div>
+      <div className="ml-auto m-2">
+        {isHomePage && <CategorySelect />}
+      </div>
 
-          {isHomePage && (
-            <div className="">
-              <select className="form-control" onChange={handleOrderChange}>
-                <option value="clea">Order By</option>
-                <option value="upward">Order A-Z</option>
-                <option value="falling">Order Z-A</option>
-                <option value="price">Mas Caros</option>
-                <option value="pricent">Mas Baratos</option>
-              </select>
-            </div>
-          )}
-        </Navbar.Collapse>
-      </Container>
+      {isHomePage && (
+        <div className="">
+          <select className="form-control" onChange={handleOrderChange}>
+            <option value="clea">Order By</option>
+            <option value="upward">Order A-Z</option>
+            <option value="falling">Order Z-A</option>
+            <option value="price">Mas Caros</option>
+            <option value="pricent">Mas Baratos</option>
+          </select>
+        </div>
+      )}
+
       {/*=============================================== REGISTRO DE LOGIN ================================================= */}
       <button onClick={handleLogin}>Login</button>
       <Modal isOpen={showLogin.open}>
@@ -194,7 +188,10 @@ const NavbarComponent = () => {
         </ModalFooter>
       </Modal>
       {/* ============================================= TERMINACION DE LOGIN ====================================================== */}
-    </Navbar>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
+
   );
 };
 
