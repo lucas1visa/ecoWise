@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-// import "./userProfile.css";
+// import { useHistory } from "react-router-dom";
+import FiestaMessage from "./FiestaMessage";
 import { postUser } from "../../redux/actions/index";
-import styles from "../UserProfile/UserProfile.module.css"
+import styles from "../UserProfile/UserProfile.module.css";
 import { FormGroup } from "reactstrap";
 
 const UserProfile = () => {
   // Dispatch para enviar acciones de Redux
   const dispatch = useDispatch();
 
+  // // Utilizamos el hook useHistory para acceder a la función history
+  // const history = useHistory();
+
+  
   // Estado local para almacenar los datos del formulario
   const [state, setState] = useState({
     name: "",
@@ -18,7 +23,7 @@ const UserProfile = () => {
     password: "",
     confirmPassword: "",
   });
-
+  
   // Estado local para almacenar los mensajes de error de validación
   const [errors, setErrors] = useState({
     name: "Nombre requerido",
@@ -28,10 +33,10 @@ const UserProfile = () => {
     password: "Contraseña requerida",
     confirmPassword: "Debe confirmar la contraseña",
   });
-
+  
   // Nuevo estado para rastrear si el usuario se ha creado correctamente
   const [userCreated, setUserCreated] = useState(false);
-
+  
   // Función para deshabilitar el botón de envío si hay errores en el formulario
   const disable = () => {
     for (let error in errors) {
@@ -39,17 +44,17 @@ const UserProfile = () => {
     }
     return false;
   };
-
+  
   // Función para validar el campo de teléfono
-  // const validatePhone = (input) => {
-  //   const phoneRegex = /^\d{10}$/;
-  //   return input.phone
-  //     ? phoneRegex.test(input.phone)
-  //       ? ""
-  //       : "Teléfono debe tener 10 dígitos numéricos"
-  //     : "";
-  // };
-
+  const validatePhone = (input) => {
+    const phoneRegex = /^\d{10}$/;
+    return input.phone
+    ? phoneRegex.test(input.phone)
+    ? ""
+    : "Teléfono debe tener 10 dígitos numéricos"
+    : "";
+  };
+  
   // Función para restablecer el formulario a su estado inicial
   const resetForm = () => {
     setState({
@@ -60,18 +65,35 @@ const UserProfile = () => {
       password: "",
       confirmPassword: "",
     });
-
+    
     setUserCreated(true);
+    
+    // Llamamos a la función para redirigir a la página de inicio después de unos segundos
+    redirectToHome();
   };
-
+  
   // Utilizamos useEffect para restablecer el estado de userCreated después de un tiempo para ocultar el mensaje de confirmación
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setUserCreated(false);
-    }, 5000); // 5000ms (5 segundos) para ocultar el mensaje de confirmación después de un tiempo
-    return () => clearTimeout(timeout);
-  }, [userCreated]);
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setUserCreated(false);
+  //   }, 5000); // 5000ms (5 segundos) para ocultar el mensaje de confirmación después de un tiempo
+  //   return () => clearTimeout(timeout);
+  // }, [userCreated]);
 
+  // Función para redirigir a la página de inicio después de unos segundos
+  // const redirectToHome = () => {
+  //   setTimeout(() => {
+  //     history.push("/"); // Redirigimos a la página de inicio ("/")
+  //   }, 2000); // Esperamos 2000ms (2 segundos) antes de redirigir
+  // };
+
+    // Función para redirigir a la página de inicio después de unos segundos
+    const redirectToHome = () => {
+      setTimeout(() => {
+        window.location.href = "/"; // Redirigimos a la página de inicio ("/")
+      }, 5000); // Esperamos 5000ms (5 segundos) antes de redirigir
+    };
+  
   // Función para validar el campo de contraseña
   const validatePassword = (input) => {
     const isNonWhiteSpace = /^\S*$/;
@@ -299,7 +321,9 @@ const UserProfile = () => {
             {errors.confirmPassword}
           </div>
           {/* Mensaje de confirmación */}
-          {userCreated && <p>¡Usuario creado correctamente!</p>}
+          {/* {userCreated && <p>¡Usuario creado correctamente!</p>} */}
+          {/* Mostrar FiestaMessage cuando userCreated sea verdadero */}
+          {userCreated && <FiestaMessage />}
           {/* Botón de envío */}
           <button disabled={disable()} type="submit">
             Submit
