@@ -1,7 +1,8 @@
 //import React from 'react';
 import CategorySelect from "../Filters/Filter";
+import refresh from "../../assets/refresh.svg"
 import { useSelector, useDispatch } from "react-redux";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, Button, Spinner } from "react-bootstrap";
 import eco from "../../Img/eco.png";
 import "../Navbar/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
@@ -84,7 +85,7 @@ const NavbarComponent = () => {
 
     switch (selectedOrder) {
       case "clean":
-        dispatch(getProducts(productListRedux));
+        window.location.reload(); // Refrescar la página
         break;
       case "upward":
         dispatch(orderProductsAlpha(productListRedux));
@@ -146,7 +147,8 @@ const NavbarComponent = () => {
           onClick={handleOrderChange}
           value="clean"
         >
-          <ion-icon name="reload-outline"></ion-icon>
+          ↻
+          {/* <ion-icon onClick={handleOrderChange}  value="clean" name="reload-outline" ></ion-icon> */}
         </Button>
       )}
 
@@ -157,7 +159,7 @@ const NavbarComponent = () => {
       {isHomePage && (
         <div className="">
           <select className="form-control" onChange={handleOrderChange}>
-            <option value="clea">Order By</option>
+            <option value="">Order By</option>
             <option value="upward">Order A-Z</option>
             <option value="falling">Order Z-A</option>
             <option value="price">Mas Caros</option>
