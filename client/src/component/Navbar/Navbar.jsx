@@ -166,7 +166,7 @@ const NavbarComponent = () => {
       )}
 
       {/*=============================================== REGISTRO DE LOGIN ================================================= */}
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLogin} className="boton-login">Login</button>
       <Modal isOpen={showLogin.open}>
         <ModalHeader>
           Iniciar Sesion
