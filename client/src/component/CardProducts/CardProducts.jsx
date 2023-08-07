@@ -45,7 +45,7 @@ const CardProducts = () => {
               className="product-card"
               onMouseEnter={() => handleMouseEnter(product.id)}
               onMouseLeave={handleMouseLeave}
-            >
+              >
               <Link to={`/product/${product.id}`}>
                 <Card.Img  src={product.image} alt={product.name} className="card-image" />
                 {hoveredProductId === product.id && (

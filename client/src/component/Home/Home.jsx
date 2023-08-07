@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import CardProducts from "../CardProducts/CardProducts";
-import "./Home.css"; // Asegúrate de importar tu archivo de estilos CSS aquí
+import "./Home.css";
 
 const Home = () => {
   const products = useSelector((state) => state.products);
