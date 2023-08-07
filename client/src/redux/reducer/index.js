@@ -41,18 +41,23 @@ const reducer = (state = inicialState, actions) => {
       console.log("Adding to favorites:", actions.payload);
       return {
         ...state,
-        favorites: [...state.favorites, actions.payload],
+       favorites: [...state.favorites, actions.payload],
         favoriteCount: state.favoriteCount + 1,
       };
+     
 
     case REMOVE_FAV:
       return {
         ...state,
-        favorites: state.favorites.filter(
+      /*  favorites: state.favorites.filter(
           (product) => product.id !== actions.payload
-        ),
+        ),*/
         favoriteCount: state.favoriteCount - 1,
+        favorites: actions.payload
+        
       };
+    
+
     case ADD_TO_CART:
       existingCartItem = state.cartItems.find(
         (item) => item.product.id === actions.payload.product.id
@@ -66,7 +71,7 @@ const reducer = (state = inicialState, actions) => {
               ? { ...item, quantity: item.quantity + actions.payload.quantity }
               : item
           ),
-          cartCount: state.cartCount + actions.payload.quantity, // Incrementar cartCount por la cantidad añadida
+          cartCount: state.cartCount + actions.payload.quantity, 
         };
       } else {
         return {
@@ -78,7 +83,7 @@ const reducer = (state = inicialState, actions) => {
               quantity: actions.payload.quantity,
             },
           ],
-          cartCount: state.cartCount + actions.payload.quantity, // Incrementar cartCount por la cantidad añadida
+          cartCount: state.cartCount + actions.payload.quantity, 
         };
       }
 

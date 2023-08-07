@@ -52,25 +52,39 @@ export function getId(id) {
   };
 }
 
- 
-
-
-
-
 export function addFav(product) {
-  return {
-    type: ADD_FAV,
-    payload: product,
+  return async function (dispatch) {
+    try {
+      const {data} = await axios.post(
+        `/favorits`,
+        product
+      );
+      return dispatch({
+        type: ADD_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log("addFav not found", error);
+    }
   };
-}
+   }
 
-export function removeFav(id) {
-  return {
-    type: REMOVE_FAV,
-    payload: id,
-  };
-}
-
+   export function removeFav(id) {
+    return async function (dispatch) {
+      try {
+        const {data} = await axios.delete(
+          `/favorits/${id}`
+        );
+        return dispatch({
+          type: REMOVE_FAV,
+          payload: data, 
+        });
+      } catch (error) {
+        console.log("removeFav not found", error);
+      }
+    };
+  }
+  
 export const addToCart = (product, quantity) => {
   return {
     type: ADD_TO_CART,

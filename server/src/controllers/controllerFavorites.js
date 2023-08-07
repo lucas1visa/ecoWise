@@ -3,12 +3,13 @@ const {Favorite} = require("../db")
 const createFav = async(name,description,price,image)=>{
     try {
         const ProductFav = await Favorite.findOne({where: {name: name}});
-        if(ProductFav===null){
+        if(ProductFav){
             let FavoriteOne = await Favorite.create({name,description,price,image});
             return FavoriteOne;
         }else{
             throw new Error('Product add favorite has been already');
-        }
+        } 
+
     } catch (error) {
         return error;
     }

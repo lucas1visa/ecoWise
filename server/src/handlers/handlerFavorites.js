@@ -5,7 +5,7 @@ const addFavorites = async(req,res)=>{
         let {name,description,price,image} = req.body;
         let newFav = await createFav(name,description,price,image);
         if(newFav){
-            res.status(200).send(`Favorites Add+${newFav}`)
+           return res.status(200).send(`Favorites Add+${newFav}`)
         }
     } catch (error) {
         res.status(400).json({error: error.message})
