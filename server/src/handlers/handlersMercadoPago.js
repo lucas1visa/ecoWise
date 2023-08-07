@@ -22,7 +22,7 @@ const postMercadopago=(req, res) => {
       },
     ],
     back_urls: {
-      success: "http://localhost:5173/home",
+      success: "http://localhost:5173/",
       failure: "http://localhost:5173",
       pending: "",
     },
