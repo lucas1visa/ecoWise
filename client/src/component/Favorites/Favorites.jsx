@@ -20,10 +20,10 @@ const Favorites = () => {
       {fav.length === 0 ? (
         <p>No Tienes Favoritos 🥹</p>
       ) : (
-        <ul>
+        <ul className="favoritos-lista">
           {fav.map((product) => (
-            <li key={product.id}>
-              <div  >
+            <li key={product.id} className="favorito-item">
+              <div >
               <img className="image-favo" src={product.image} alt={product.name} />
               </div>
               <h3 className="h2-favo">{product.name}</h3>
