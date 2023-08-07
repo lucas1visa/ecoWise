@@ -37,7 +37,7 @@ const CardProducts = () => {
   const [hoveredProductId, setHoveredProductId] = useState(null);
 
   return (
-    <Container>
+    <Container  className='product-card'>
       <Row>
         {currentProducts.map((product) => (
           <Col key={product.id} md={4} sm={6} className="mb-4">
@@ -58,10 +58,9 @@ const CardProducts = () => {
               </Link>
               <Card.Body>
                 <h3 className='titulo'>{product.name}</h3>
-                <br />
+                <br /><br />
                 <Card.Text className='precio'>${product.price}</Card.Text>
-                <br />
-                <br />
+                <br /><br />
               </Card.Body>
             </Card>
           </Col>
