@@ -11,6 +11,7 @@ const Favorites = () => {
   console.log(typeof fav)
 
   const handleRemoveFav = (productId)=> {
+    console.log('id de product delete ' + productId)
     dispatch(removeFav(productId))
 }
 

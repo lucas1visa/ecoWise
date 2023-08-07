@@ -74,12 +74,12 @@ export function addFav(product) {
    export function removeFav(id) {
     return async function (dispatch) {
       try {
-        const {data} = await axios.delete(
-          `/favorits/${id}`
+        await axios.delete(
+          `/favorits`
         );
         return dispatch({
           type: REMOVE_FAV,
-          payload: data, 
+          payload: id, 
         });
       } catch (error) {
         console.log("removeFav not found", error);

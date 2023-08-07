@@ -15,9 +15,9 @@ const createFav = async(name,description,price,image)=>{
     }
 };
 
-const delFav = async(name)=>{
+const delFav = async(id)=>{
     try {
-        let foundFav = await Favorite.findOne({where: {name: name}});
+        let foundFav = await Favorite.findOne({where: {name: id}});
         if(foundFav){
             let Favdelete = await foundFav.destroy()
             return "Favorite Delete with success";

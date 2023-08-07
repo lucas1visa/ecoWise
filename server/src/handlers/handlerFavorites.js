@@ -24,8 +24,8 @@ const getFavorites = async(req,res) =>{
 
 const deletFavorites = async(req,res)=>{
     try {
-        let {name} = req.body;
-        let notFavorite = await delFav(name);
+        let {id} = req.body;
+        let notFavorite = await delFav(id);
         res.status(200).send("Favorite Delete")
     } catch (error) {
         res.status(400).json({error:error.message})

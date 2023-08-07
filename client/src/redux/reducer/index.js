@@ -49,12 +49,10 @@ const reducer = (state = inicialState, actions) => {
     case REMOVE_FAV:
       return {
         ...state,
-      /*  favorites: state.favorites.filter(
+        favorites: state.favorites.filter(
           (product) => product.id !== actions.payload
-        ),*/
+        ),
         favoriteCount: state.favoriteCount - 1,
-        favorites: actions.payload
-        
       };
     
 
