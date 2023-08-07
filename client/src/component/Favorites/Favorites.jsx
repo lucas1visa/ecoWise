@@ -8,9 +8,10 @@ const Favorites = () => {
   const dispatch = useDispatch()
 
   const fav = useSelector((state) => state.favorites);
-  console.log(fav)
+  console.log(typeof fav)
 
   const handleRemoveFav = (productId)=> {
+    console.log('id de product delete ' + productId)
     dispatch(removeFav(productId))
 }
 
@@ -27,6 +28,7 @@ const Favorites = () => {
               <img className="image-favo" src={product.image} alt={product.name} />
               </div>
               <h3 className="h2-favo">{product.name}</h3>
+              <p className="h2-favo">{product.description} </p>
               <p className="h2-favo">Precio: ${product.price}</p>
               <button  onClick={() => handleRemoveFav(product.id)}>
                 Borrar Favoritos

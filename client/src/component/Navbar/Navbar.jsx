@@ -76,7 +76,8 @@ const NavbarComponent = () => {
   }
   // =========================================================================================================================
 
-  const isHomePage = location.pathname === "/";
+  const isHomePage = location.pathname === "/" || location.pathname === "/favorites";
+
 
   const handleOrderChange = (e) => {
     const selectedOrder = e.target.value;
