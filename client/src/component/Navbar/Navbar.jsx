@@ -230,7 +230,7 @@ const NavbarComponent = () => {
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={handleLogin}>Cerrar</Button>
-          <Link to="/account/register/">Sing Up</Link>
+          <Link to="/account/register/">Registrate</Link>
           <Link>Recuperar Password</Link>
         </ModalFooter>
       </Modal>
