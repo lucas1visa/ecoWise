@@ -161,3 +161,7 @@ p {
   height: 40px;
   animation: spin 1s linear infinite;
 }
+
+.corazon-red-fav{
+  text-align: center;
+}

@@ -130,10 +130,11 @@ const NavbarComponent = () => {
             </button>
           </Link>
         </div>
-        <div>
-          <Link to="/favorites" className="nav-linkk">
-            <button className="button-icon-cora">🤍</button>
-            {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
+        <div className="favorits-count-container">
+      
+          <Link to="/favorites" >
+            <button className="button-icon-cora">{favoriteCount > 0 && <p className="favorite-count">❤️{favoriteCount}</p>}</button>
+            {/* {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>} */}
           </Link>
         </div>
       </Nav>

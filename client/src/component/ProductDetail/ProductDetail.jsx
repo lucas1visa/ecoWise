@@ -69,7 +69,7 @@ const ProductDetail = () => {
                   {favorites.find(
                     (favProduct) => favProduct.id === product.id
                   ) ? (
-                    <p>Agregado a Favoritos</p>
+                    <p className="corazon-red-fav">❤️</p>  
                   ) : (
                     <button
                       className="btn btn-button"
