@@ -39,7 +39,7 @@ const ProductDetail = () => {
   };
 
   const handleGoBack = () => {
-    window.history.back(); // Volver atrás en la historia del navegador
+    window.history.back(); 
   };
 
   return (
