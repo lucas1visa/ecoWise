@@ -1,15 +1,36 @@
-const { User } = require("../db");
+const { User,Cart,Product } = require("../db");
 const bcrypt = require("bcrypt")
 
 const users = async () => {
   try {
-    const todosLosUsuarios = await User.findAll();
+    const todosLosUsuarios = await User.findAll({
+      include:{
+        model: Cart,
+        include:Product
+      }
+    });
     return todosLosUsuarios;
   } catch (error) {
     console.error("Error al obtener los Usuarios:", error);
     return null;
   }
 };
+
+const getUserById = async (userId) => {
+  try {
+    const user = await User.findByPk(userId, {
+      include: {
+        model: Cart,
+        include: Product,
+      },
+    });
+    return user;
+  } catch (error) {
+    console.error("Error al obtener el Usuario por ID:", error);
+    return null;
+  }
+};
+
 
 const crearUsers = async (name, surname, email, phone, password) => {
   try {
@@ -65,4 +86,4 @@ const delet = async (id) => {
   }
 }
 
-module.exports = { users, crearUsers, update, delet };
+module.exports = { users, crearUsers, update, delet, getUserById };

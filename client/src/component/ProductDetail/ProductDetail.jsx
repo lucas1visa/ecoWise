@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getId, addFav } from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 import MPButton from "../MPButton/MPButton";
 import "./ProductDetail.css";
 
 const ProductDetail = () => {
   const { id } = useParams();
+
+  
 
   const product = useSelector((state) => state.detail[0]);
   const dispatch = useDispatch();
@@ -34,6 +37,11 @@ const ProductDetail = () => {
       dispatch(addFav(product));
     }
   };
+
+  const handleGoBack = () => {
+    window.history.back(); 
+  };
+
   return (
     <div className="custom-container">
       <div className="container-fluid">
@@ -113,6 +121,9 @@ const ProductDetail = () => {
                         precio={product.price}
                         cantidad={quantity}
                       />
+                       <button className="btn-button" onClick={handleGoBack}>
+          Volver 
+        </button>
                     </div>
                   </div>
                 </div>

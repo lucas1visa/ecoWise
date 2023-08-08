@@ -1,7 +1,8 @@
 //import React from 'react';
 import CategorySelect from "../Filters/Filter";
+
 import { useSelector, useDispatch } from "react-redux";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, Button, Spinner } from "react-bootstrap";
 import eco from "../../Img/eco.png";
 import "../Navbar/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
@@ -13,22 +14,26 @@ import {
   getProducts,
 } from "../../redux/actions";
 import Search from "../SearchBar/SearchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // importamos todos los componentes de para el formulario de login
 import { FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 // importamos la funcion de validacion para los inputs
 import validate from "./validate";
+// importamos la funcion para despachar los datos y nos devuelva el token
+import { LoginUser } from "../../services/tokenlogin";
 
 const NavbarComponent = () => {
+  const [selectedOrder, setSelectedOrder] = useState(""); // Estado para el select de ordenamiento
+  const [selectedCategory, setSelectedCategory] = useState(""); // Estado para el select de categoría
   const location = useLocation();
   const productListRedux = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const favoriteCount = useSelector((state) => state.favoriteCount);
   const CartCount = useSelector((state) => state.cartCount);
-   
+
   // ====================================== VENTANA EMERGENTE PARA LOOGIN ============================================
   // estado para controlar la apertura o cierre de la ventana emergente
-  const [showLogin, setShowLogin] = useState({
+  const [showFormLogin, setShowFormLogin] = useState({
     open: false
   });
   // estado local para controlar la informacion en los inputs 
@@ -36,6 +41,10 @@ const NavbarComponent = () => {
     email: "",
     password: ""
   });
+  // estado para mostrar el boton de logout
+  const [showLogout,setShowLogout]= useState(false);
+  // estado para mostrar el boton de login
+  const [showLogin, setShowLogin]= useState(true);
   // estado para almacenar los errores de los inputs
   const [err, setErr] = useState({});
   // funcion para captura la informacion y almacenarla en el estado local
@@ -45,12 +54,12 @@ const NavbarComponent = () => {
   };
   // funcion para cerrar el login
   const handleLogin = () => {
-    setShowLogin({
-      open: !showLogin.open
+    setShowFormLogin({
+      open: !showFormLogin.open
     })
   }
   // funcion para despachar la informacion de los inputs y almacenarlo en la DB
-  const handleSubmitLogin = (e) => {
+  const handleSubmitLogin = async(e) => {
     e.preventDefault();
     // controlamos y validamos los inputs
     let errorinput = validate(valuesInputs);
@@ -58,21 +67,43 @@ const NavbarComponent = () => {
     setErr(errorinput);
     //si no existe ningun error despachamos la info
     if (Object.keys(errorinput).length === 0) {
-      //dejamos de mostrar el componente login
-      setShowLogin({
-        open: false
-      });
-      // limpiamos los inputs
-      setValuesInputs({
-        email: "",
-        password: ""
-      })
-      // despachamos la informacion
-      console.log('se envio che');
+      // despachamos la informacion y obtenemos el valor del token
+      let infotoken = await LoginUser(valuesInputs);
+      console.log(infotoken.newToken);
+      // comprobamos el resultado del token, si el usuario y password fueron validados debera devolver
+      // un token, en caso contrario devolvera un objeto vacio
+      if (Object.getOwnPropertyNames(infotoken.newToken).length){
+        // almacenamos la informacion en localstorage del navegador
+        localStorage.setItem("tokenUser",infotoken.newToken);
+        //dejamos de mostrar el componente login
+        setShowFormLogin({
+          open: false
+        });
+        // limpiamos los inputs
+        setValuesInputs({
+          email: "",
+          password: ""
+        })
+        // dejamos de mostrar el boton de login
+        setShowLogin(false);
+        // mostramos el boton de logout
+        setShowLogout(true);
+        console.log('se envio che');
+      } else {
+        console.log('Hubo error en encontrar el usuario o validar su password');
+      }
     } else {
       console.log('hay errores man');
     }
-
+  };
+  // funcion para elimanar el token y mostar el boton de login
+  const handleLogout = () =>{
+    // quitamos la informacion almacenada en la localstorage
+    localStorage.removeItem('tokenUser');
+    // mostramos el boton de login
+    setShowLogin(true);
+    // dejamos de mostrar el boton de logout
+    setShowLogout(false);
   }
   // =========================================================================================================================
 
@@ -81,10 +112,13 @@ const NavbarComponent = () => {
 
   const handleOrderChange = (e) => {
     const selectedOrder = e.target.value;
+    setSelectedOrder(selectedOrder);
 
     switch (selectedOrder) {
       case "clean":
         dispatch(getProducts(productListRedux));
+        setSelectedOrder(""); // Reinicia el valor del select de ordenamiento
+        resetCategory(); // Reinicia el valor del select de categoría
         break;
       case "upward":
         dispatch(orderProductsAlpha(productListRedux));
@@ -104,72 +138,78 @@ const NavbarComponent = () => {
     }
   };
 
+  const resetCategory = () => {
+    setSelectedCategory("");
+  };
+
   return (
     <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
-  <Container>
-    <Link to="/" className="navbar-brand">
-      <img src={eco} alt="ecoWise" className="ecoWise" />
-    </Link>
-    <Navbar.Toggle aria-controls="navbar" />
-    <Navbar.Collapse id="navbar">
-      <Nav className="ml-auto">
-        <Link to="/" className="nav-link">
-          Inicio
+      <Container>
+        <Link to="/" className="navbar-brand">
+          <img src={eco} alt="ecoWise" className="ecoWise" />
         </Link>
-        <Link to="/about" className="nav-link">
-          Acerca
-        </Link>
-        <Link to="/contact" className="nav-link">
-          Contacto
-        </Link>
-        <div className="container-car">
-          <Link to="/Cart" className="nav-linkk">
-            <button className="button-icon-car">
-              <ion-icon name="cart-outline"></ion-icon>
-              {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
-            </button>
-          </Link>
-        </div>
-        <div className="favorits-count-container">
-      
-          <Link to="/favorites" >
-            <button className="button-icon-cora">{favoriteCount > 0 && <p className="favorite-count">❤️{favoriteCount}</p>}</button>
-            {/* {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>} */}
-          </Link>
-        </div>
-      </Nav>
+        <Navbar.Toggle aria-controls="navbar" />
+        <Navbar.Collapse id="navbar">
+          <Nav className="ml-auto">
+            <Link to="/" className="nav-link">
+              Inicio
+            </Link>
+            <Link to="/about" className="nav-link">
+              Acerca
+            </Link>
+            <Link to="/contact" className="nav-link">
+              Contacto
+            </Link>
+            <div className="container-car">
+              <Link to="/Cart" className="nav-linkk">
+                <button className="button-icon-car">
+                  <ion-icon name="cart-outline"></ion-icon>
+                  {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
+                </button>
+              </Link>
+            </div>
+            <div>
+              <Link to="/favorites" className="nav-linkk">
+                <button className="button-icon-cora">🤍</button>
+                {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
+              </Link>
+            </div>
+          </Nav>
 
-      {isHomePage && <Search />}
+          {isHomePage && <Search />}
 
-      {isHomePage && (
-        <Button
-          className="prolijo-button"
-          onClick={handleOrderChange}
-          value="clean"
-        >
-          <ion-icon name="reload-outline"></ion-icon>
-        </Button>
-      )}
+          {isHomePage && (
+            <Button
+              className="prolijo-button"
+              onClick={handleOrderChange}
+              value="clean"
+            >
+              ↻
+              {/* <ion-icon onClick={handleOrderChange}  value="clean" name="reload-outline" ></ion-icon> */}
+            </Button>
+          )}
 
-      <div className="ml-auto m-2">
-        {isHomePage && <CategorySelect />}
-      </div>
+          <div className="ml-auto m-2">
+            {isHomePage && <CategorySelect selectedCategory={selectedCategory}
+              onCategoryChange={setSelectedCategory} />}
+          </div>
 
-      {isHomePage && (
-        <div className="">
-          <select className="form-control" onChange={handleOrderChange}>
-            <option value="clea">Order By</option>
-            <option value="upward">Order A-Z</option>
-            <option value="falling">Order Z-A</option>
-            <option value="price">Mas Caros</option>
-            <option value="pricent">Mas Baratos</option>
-          </select>
-        </div>
-      )}
+          {isHomePage && (
+            <div className="">
+              <select className="form-control" onChange={handleOrderChange} value={selectedOrder}>
+                <option value="">Order By</option>
+                <option value="upward">Order A-Z</option>
+                <option value="falling">Order Z-A</option>
+                <option value="price">Mas Caros</option>
+                <option value="pricent">Mas Baratos</option>
+              </select>
+            </div>
+          )}
 
       {/*=============================================== REGISTRO DE LOGIN ================================================= */}
-      <button onClick={handleLogin} className="boton-login">Login</button>
-      <Modal isOpen={showLogin.open}>
+      {showLogout && <Button onClick={handleLogout}>Salir</Button>}
+      {showLogin && <Button onClick={handleLogin}>Iniciar</Button>}
+      <Modal isOpen={showFormLogin.open}>
         <ModalHeader>
           Iniciar Sesion
         </ModalHeader>
@@ -190,8 +230,8 @@ const NavbarComponent = () => {
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={handleLogin}>Cerrar</Button>
-          <Link to="/account/register/">Registrarse</Link>
-          <Link>Recuperar Contraseña</Link>
+          <Link to="/account/register/">Registrate</Link>
+          <Link>Recuperar Password</Link>
         </ModalFooter>
       </Modal>
       {/* ============================================= TERMINACION DE LOGIN ====================================================== */}

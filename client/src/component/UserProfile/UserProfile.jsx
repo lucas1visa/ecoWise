@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-// import "./userProfile.css";
+import FiestaMessage from "./FiestaMessage";
 import { postUser } from "../../redux/actions/index";
-import styles from "../UserProfile/UserProfile.module.css"
+import styles from "../UserProfile/UserProfile.module.css";
 import { FormGroup } from "reactstrap";
 
 const UserProfile = () => {
@@ -41,14 +41,14 @@ const UserProfile = () => {
   };
 
   // Función para validar el campo de teléfono
-  // const validatePhone = (input) => {
-  //   const phoneRegex = /^\d{10}$/;
-  //   return input.phone
-  //     ? phoneRegex.test(input.phone)
-  //       ? ""
-  //       : "Teléfono debe tener 10 dígitos numéricos"
-  //     : "";
-  // };
+  const validatePhone = (input) => {
+    const phoneRegex = /^\d{10}$/;
+    return input.phone
+      ? phoneRegex.test(input.phone)
+        ? ""
+        : "Teléfono debe tener 10 dígitos numéricos"
+      : "";
+  };
 
   // Función para restablecer el formulario a su estado inicial
   const resetForm = () => {
@@ -62,15 +62,17 @@ const UserProfile = () => {
     });
 
     setUserCreated(true);
+
+    // Llamamos a la función para redirigir a la página de inicio después de unos segundos
+    redirectToHome();
   };
 
-  // Utilizamos useEffect para restablecer el estado de userCreated después de un tiempo para ocultar el mensaje de confirmación
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setUserCreated(false);
-    }, 5000); // 5000ms (5 segundos) para ocultar el mensaje de confirmación después de un tiempo
-    return () => clearTimeout(timeout);
-  }, [userCreated]);
+  // Función para redirigir a la página de inicio después de unos segundos
+  const redirectToHome = () => {
+    setTimeout(() => {
+      window.location.href = "/"; // Redirigimos a la página de inicio ("/")
+    }, 5000); // Esperamos 5000ms (5 segundos) antes de redirigir
+  };
 
   // Función para validar el campo de contraseña
   const validatePassword = (input) => {
@@ -171,11 +173,14 @@ const UserProfile = () => {
   // Función para manejar el cambio en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // Eliminar espacios en blanco iniciales del valor
+    const trimmedValue = value.trim();
     setState((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: trimmedValue,
     }));
-    validateField({ ...state, [name]: value }, name);
+
+    validateField({ ...state, [name]: trimmedValue }, name);
   };
 
   // Estado local para rastrear si se muestra la contraseña en el campo de contraseña
@@ -298,8 +303,8 @@ const UserProfile = () => {
             </div>
             {errors.confirmPassword}
           </div>
-          {/* Mensaje de confirmación */}
-          {userCreated && <p>¡Usuario creado correctamente!</p>}
+          {/* Mostrar FiestaMessage cuando userCreated sea verdadero */}
+          {userCreated && <FiestaMessage />}
           {/* Botón de envío */}
           <button disabled={disable()} type="submit">
             Submit
