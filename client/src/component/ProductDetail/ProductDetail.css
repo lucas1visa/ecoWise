@@ -28,6 +28,7 @@
 .h2-name {
   font-size: 24px;
   margin-bottom: 10px;
+  color: antiquewhite;
 }
 
 p {
@@ -36,7 +37,7 @@ p {
 }
 
 .btn-button {
-  background-color: #56f21de9;
+  background-color: #ff9f43; 
   color: white;
   border: none;
   padding: 8px 15px;
@@ -46,7 +47,7 @@ p {
 }
 
 .btn-button:hover {
-  background-color: #30b100;
+  background-color:  #ff8c00; 
 }
 
 .quantity-select {
@@ -126,4 +127,37 @@ p {
   font-weight: 800;
   font-size: 20px;
 
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #000;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
 }

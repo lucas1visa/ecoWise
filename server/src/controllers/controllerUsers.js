@@ -1,9 +1,14 @@
-const { User } = require("../db");
+const { User,Cart,Product } = require("../db");
 const bcrypt = require("bcrypt")
 
 const users = async () => {
   try {
-    const todosLosUsuarios = await User.findAll();
+    const todosLosUsuarios = await User.findAll({
+      include:{
+        model: Cart,
+        include:Product
+      }
+    });
     return todosLosUsuarios;
   } catch (error) {
     console.error("Error al obtener los Usuarios:", error);

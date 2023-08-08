@@ -11,16 +11,14 @@ const {getcarrito,crearCart,updateCarrito}=require("../controllers/controllersCa
 
 
     const postCart = async (req, res) => {
-        const { image, price, quantityAvailable, name } = req.body
+        const { id,quantityAvailable, UserId } = req.body
         try {
-            const crearCarrito = await crearCart(image, price, quantityAvailable, name)
+            const crearCarrito = await crearCart(id,quantityAvailable,UserId)
             res.status(200).send("Carrito creado Correctamente")
         } catch (error) {
             res.status(500).send("Error: " + error.message)
         }
     }
-    
-    
     const putCart = async (req, res) => {
         const { quantityAvailable, id } = req.body;
         const updateCart = await updateCarrito(id, quantityAvailable)

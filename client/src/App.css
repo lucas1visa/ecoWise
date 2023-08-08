@@ -8,6 +8,8 @@
 
 body{
   background-image: url('../../client/src/Img/ecoWise.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /*.logo {

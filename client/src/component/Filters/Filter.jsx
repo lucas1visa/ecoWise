@@ -3,12 +3,11 @@ import { useDispatch } from 'react-redux';
 import { getCategory } from "../../redux/actions"; // Asegúrate de tener la ruta correcta
 
 // Crea tu componente funcional de React
-function CategorySelect() {
+function CategorySelect({ selectedCategory, onCategoryChange, resetCategory }) {
     const dispatch = useDispatch();
-    const [selectedCategory, setSelectedCategory] = useState([1]);
 
     const handleCategoryChange = (event) => {
-        setSelectedCategory(event.target.value);
+        onCategoryChange(event.target.value);
         dispatch(getCategory(event.target.value));
     };
 
@@ -25,6 +24,7 @@ function CategorySelect() {
                     </option>
                 ))}
             </select>
+
         </div>
     );
 }

@@ -14,9 +14,15 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const favorites = useSelector((state) => state.favorites);
   console.log(quantity);
+  const [state, setState] = useState({
+    loading: true,
+  });
 
   useEffect(() => {
     dispatch(getId(id));
+    setTimeout(() => {
+      setState({ ...state, loading: false });
+    }, 500);
   }, [dispatch, id]);
 
   const handleAddToCart = () => {
@@ -33,19 +39,29 @@ const ProductDetail = () => {
       <div className="container-fluid">
         <main className="row">
           <div className="col-md-6">
-            {product && (
-              <img
-                src={product.image}
-                alt={product.name}
-                className="img-fluid"
-              />
+            {state.loading ? (
+               <div className="loading-container">
+               <div className="loading-spinner"> </div>
+             </div>
+             
+            ) : (
+              product && (
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="img-fluid"
+                />
+              )
             )}
           </div>
           <div className="col-md-6 d-flex align-items-center">
-            {product ? (
-              <>
-                <div className="product-info">
-                  <h2 className="h2-name">{product.name}</h2>
+            {state.loading ? (
+              <p></p>
+            ) : (
+              product ? (
+                <>
+                  <div className="product-info">
+                    <h2 className="h2-name">{product.name}</h2>
                   <p>{product.description}</p>
                   <p>Precio: ${product.price}</p>
                   <p>Cantidad disponible: {product.quantityAvailable}</p>
@@ -102,8 +118,9 @@ const ProductDetail = () => {
                 </div>
               </>
             ) : (
-              <p>Loading...</p>
-            )}
+              <p>No se encontró el producto</p>
+            )
+            )} 
           </div>
         </main>
       </div>

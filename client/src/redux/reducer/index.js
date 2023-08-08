@@ -7,7 +7,7 @@ import {
   REMOVE_FROM_CART,
   GET_CATEGORY,
   SEARCH_PRODUCTS,
-  RESET_QUANTITY
+  RESET_QUANTITY,
 } from "../actions/Types";
 
 const inicialState = {
@@ -16,6 +16,8 @@ const inicialState = {
   favorites: [],
   cartItems: [],
   filtered: [],
+  favoriteCount: 0,
+  cartCount: 0,
 };
 
 const reducer = (state = inicialState, actions) => {
@@ -27,7 +29,6 @@ const reducer = (state = inicialState, actions) => {
       return {
         ...state,
         products: actions.payload,
-        
       };
 
     case GET_ID:
@@ -40,8 +41,10 @@ const reducer = (state = inicialState, actions) => {
       console.log("Adding to favorites:", actions.payload);
       return {
         ...state,
-        favorites: [...state.favorites, actions.payload],
+       favorites: [...state.favorites, actions.payload],
+        favoriteCount: state.favoriteCount + 1,
       };
+     
 
     case REMOVE_FAV:
       return {
@@ -49,7 +52,10 @@ const reducer = (state = inicialState, actions) => {
         favorites: state.favorites.filter(
           (product) => product.id !== actions.payload
         ),
+        favoriteCount: state.favoriteCount - 1,
       };
+    
+
     case ADD_TO_CART:
       existingCartItem = state.cartItems.find(
         (item) => item.product.id === actions.payload.product.id
@@ -63,11 +69,11 @@ const reducer = (state = inicialState, actions) => {
               ? { ...item, quantity: item.quantity + actions.payload.quantity }
               : item
           ),
+          cartCount: state.cartCount + actions.payload.quantity, 
         };
       } else {
         return {
           ...state,
-
           cartItems: [
             ...state.cartItems,
             {
@@ -75,42 +81,55 @@ const reducer = (state = inicialState, actions) => {
               quantity: actions.payload.quantity,
             },
           ],
+          cartCount: state.cartCount + actions.payload.quantity, 
         };
       }
-      case RESET_QUANTITY:
-        return {
-          ...state,
-          cartItems: state.cartItems.map((item) =>
-            item.product.id === actions.payload ? { ...item, quantity: 0 } : item
-          ),
-        };
 
-    case REMOVE_FROM_CART:
+    case RESET_QUANTITY: {
+      const itemToReset = state.cartItems.find(
+        (item) => item.product.id === actions.payload
+      );
+
+      if (!itemToReset) {
+        return state;
+      }
+
+      const updatedCartItems = state.cartItems.filter(
+        (item) => item.product.id !== actions.payload
+      );
+
       return {
         ...state,
-
-        cartItems: state.cartItems.filter(
-          (item) => item.product.id !== actions.payload
-        ),
+        cartItems: updatedCartItems,
+        cartCount: state.cartCount - itemToReset.quantity,
       };
+    }
 
-      case GET_CATEGORY:
+    case REMOVE_FROM_CART: {
+      const updatedCartItems = state.cartItems.filter(
+        (item) => item.product.id !== actions.payload
+      );
+
+      return {
+        ...state,
+        cartItems: updatedCartItems,
+      };
+    }
+
+    case GET_CATEGORY:
       return {
         ...state,
         products: actions.payload,
       };
-      case SEARCH_PRODUCTS:
-        return{
-          ...state,
-          products: actions.payload
-        }
-
-
-
+    case SEARCH_PRODUCTS:
+      return {
+        ...state,
+        products: actions.payload,
+      };
 
     default:
       return {
-        ...state
+        ...state,
       };
   }
 };

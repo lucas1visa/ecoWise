@@ -1,7 +1,8 @@
 //import React from 'react';
 import CategorySelect from "../Filters/Filter";
+
 import { useSelector, useDispatch } from "react-redux";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, Button, Spinner } from "react-bootstrap";
 import eco from "../../Img/eco.png";
 import "../Navbar/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
@@ -22,10 +23,14 @@ import validate from "./validate";
 import { LoginUser } from "../../services/tokenlogin";
 
 const NavbarComponent = () => {
-  
+  const [selectedOrder, setSelectedOrder] = useState(""); // Estado para el select de ordenamiento
+  const [selectedCategory, setSelectedCategory] = useState(""); // Estado para el select de categoría
   const location = useLocation();
   const productListRedux = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const favoriteCount = useSelector((state) => state.favoriteCount);
+  const CartCount = useSelector((state) => state.cartCount);
+
   // ====================================== VENTANA EMERGENTE PARA LOOGIN ============================================
   // estado para controlar la apertura o cierre de la ventana emergente
   const [showFormLogin, setShowFormLogin] = useState({
@@ -102,14 +107,18 @@ const NavbarComponent = () => {
   }
   // =========================================================================================================================
 
-  const isHomePage = location.pathname === "/";
+  const isHomePage = location.pathname === "/" || location.pathname === "/favorites";
+
 
   const handleOrderChange = (e) => {
     const selectedOrder = e.target.value;
+    setSelectedOrder(selectedOrder);
 
     switch (selectedOrder) {
       case "clean":
         dispatch(getProducts(productListRedux));
+        setSelectedOrder(""); // Reinicia el valor del select de ordenamiento
+        resetCategory(); // Reinicia el valor del select de categoría
         break;
       case "upward":
         dispatch(orderProductsAlpha(productListRedux));
@@ -129,65 +138,73 @@ const NavbarComponent = () => {
     }
   };
 
+  const resetCategory = () => {
+    setSelectedCategory("");
+  };
+
   return (
     <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
-  <Container>
-    <Link to="/" className="navbar-brand">
-      <img src={eco} alt="ecoWise" className="ecoWise" />
-    </Link>
-    <Navbar.Toggle aria-controls="navbar" />
-    <Navbar.Collapse id="navbar">
-      <Nav className="ml-auto">
-        <Link to="/" className="nav-link">
-          Inicio
+      <Container>
+        <Link to="/" className="navbar-brand">
+          <img src={eco} alt="ecoWise" className="ecoWise" />
         </Link>
-        <Link to="/about" className="nav-link">
-          Acerca
-        </Link>
-        <Link to="/contact" className="nav-link">
-          Contacto
-        </Link>
-        <div className="container-car">
-          <Link to="/Cart" className="nav-linkk">
-            <button className="button-icon-car">
-              <ion-icon name="cart-outline"></ion-icon>
-            </button>
-          </Link>
-        </div>
-        <div>
-          <Link to="/favorites" className="nav-linkk">
-            <button className="button-icon-cora">🤍</button>
-          </Link>
-        </div>
-      </Nav>
+        <Navbar.Toggle aria-controls="navbar" />
+        <Navbar.Collapse id="navbar">
+          <Nav className="ml-auto">
+            <Link to="/" className="nav-link">
+              Inicio
+            </Link>
+            <Link to="/about" className="nav-link">
+              Acerca
+            </Link>
+            <Link to="/contact" className="nav-link">
+              Contacto
+            </Link>
+            <div className="container-car">
+              <Link to="/Cart" className="nav-linkk">
+                <button className="button-icon-car">
+                  <ion-icon name="cart-outline"></ion-icon>
+                  {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
+                </button>
+              </Link>
+            </div>
+            <div>
+              <Link to="/favorites" className="nav-linkk">
+                <button className="button-icon-cora">🤍</button>
+                {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
+              </Link>
+            </div>
+          </Nav>
 
-      {isHomePage && <Search />}
+          {isHomePage && <Search />}
 
-      {isHomePage && (
-        <Button
-          className="prolijo-button"
-          onClick={handleOrderChange}
-          value="clean"
-        >
-          <ion-icon name="reload-outline"></ion-icon>
-        </Button>
-      )}
+          {isHomePage && (
+            <Button
+              className="prolijo-button"
+              onClick={handleOrderChange}
+              value="clean"
+            >
+              ↻
+              {/* <ion-icon onClick={handleOrderChange}  value="clean" name="reload-outline" ></ion-icon> */}
+            </Button>
+          )}
 
-      <div className="ml-auto m-2">
-        {isHomePage && <CategorySelect />}
-      </div>
+          <div className="ml-auto m-2">
+            {isHomePage && <CategorySelect selectedCategory={selectedCategory}
+              onCategoryChange={setSelectedCategory} />}
+          </div>
 
-      {isHomePage && (
-        <div className="">
-          <select className="form-control" onChange={handleOrderChange}>
-            <option value="clea">Order By</option>
-            <option value="upward">Order A-Z</option>
-            <option value="falling">Order Z-A</option>
-            <option value="price">Mas Caros</option>
-            <option value="pricent">Mas Baratos</option>
-          </select>
-        </div>
-      )}
+          {isHomePage && (
+            <div className="">
+              <select className="form-control" onChange={handleOrderChange} value={selectedOrder}>
+                <option value="">Order By</option>
+                <option value="upward">Order A-Z</option>
+                <option value="falling">Order Z-A</option>
+                <option value="price">Mas Caros</option>
+                <option value="pricent">Mas Baratos</option>
+              </select>
+            </div>
+          )}
 
       {/*=============================================== REGISTRO DE LOGIN ================================================= */}
       {showLogout && <button onClick={handleLogout}>Logout</button>}

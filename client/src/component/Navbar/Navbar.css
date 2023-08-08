@@ -49,3 +49,21 @@
     padding: 0px;
     border: none;
 }
+
+.favorite-count {
+    background-color: rgb(0, 255, 170);
+    color: rgb(15, 15, 15);
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 12px;
+    margin-left: -10px;
+}
+
+.boton-login{
+    background-color: white;
+    color: black;
+    height: 37px;
+    border-radius: 5px;
+    padding-top: 5px;
+    margin-left: 8px;
+}
