@@ -69,10 +69,10 @@ const NavbarComponent = () => {
     if (Object.keys(errorinput).length === 0) {
       // despachamos la informacion y obtenemos el valor del token
       let infotoken = await LoginUser(valuesInputs);
-      // console.log(infotoken);
+      console.log(infotoken);
       // comprobamos el resultado del token, si el usuario y password fueron validados debera devolver
       // un token, en caso contrario devolvera un objeto vacio
-      if (Object.keys(infotoken).length !== 0){
+      if (infotoken.newToken!== null){
         // almacenamos la informacion en localstorage del navegador
         localStorage.setItem("tokenUser",infotoken.newToken);
         //dejamos de mostrar el componente login
@@ -207,8 +207,8 @@ const NavbarComponent = () => {
           )}
 
       {/*=============================================== REGISTRO DE LOGIN ================================================= */}
-      {showLogout && <button onClick={handleLogout}>Logout</button>}
-      {showLogin && <button onClick={handleLogin}>Login</button>}
+      {showLogout && <Button onClick={handleLogout}>Salir</Button>}
+      {showLogin && <Button onClick={handleLogin}>Iniciar</Button>}
       <Modal isOpen={showFormLogin.open}>
         <ModalHeader>
           Iniciar Sesion
