@@ -187,4 +187,3 @@ export const searchPrducts = (name)=>{
   dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
 };
 };
-
