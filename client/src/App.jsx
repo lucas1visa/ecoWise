@@ -17,7 +17,7 @@ import About from './component/About/About';
 
 function App() {
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(getProducts());
   }, []);
