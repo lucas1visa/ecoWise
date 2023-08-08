@@ -16,6 +16,22 @@ const users = async () => {
   }
 };
 
+const getUserById = async (userId) => {
+  try {
+    const user = await User.findByPk(userId, {
+      include: {
+        model: Cart,
+        include: Product,
+      },
+    });
+    return user;
+  } catch (error) {
+    console.error("Error al obtener el Usuario por ID:", error);
+    return null;
+  }
+};
+
+
 const crearUsers = async (name, surname, email, phone, password) => {
   try {
     // una vez recibida la password al crear el usuario la encryptamos para almacenarla en la DB
@@ -70,4 +86,4 @@ const delet = async (id) => {
   }
 }
 
-module.exports = { users, crearUsers, update, delet };
+module.exports = { users, crearUsers, update, delet, getUserById };
