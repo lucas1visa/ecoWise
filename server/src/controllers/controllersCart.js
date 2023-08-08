@@ -1,4 +1,4 @@
-const Cart = require("../models/Cart");
+const {Cart,Product} = require("../db");
 
 const getcarrito = async ()=>{
     try {
@@ -10,15 +10,13 @@ const getcarrito = async ()=>{
       }
 }
 
-const crearCart = async (name, price, quantityAvailable, image)=>{
+const crearCart = async (id,quantityAvailable,UserId)=>{
     try {
     const nuevoProductoCarrito = await Cart.create({
-        name,
-        price,
         quantityAvailable,
-        image,
+        UserId
       });
-  
+      await nuevoProductoCarrito.setProducts(id)
       return nuevoProductoCarrito;
     } catch (error) {
       console.error("Error el producto al carrito de compras:", error);

@@ -3,12 +3,24 @@ const { users, crearUsers, update, delet } = require("../controllers/controllerU
 
 const getUsers = async (req, res) => {
     try {
-        const todosLosUsuarios = await users()
-        res.status(200).send(todosLosUsuarios)
+      const { userId } = req.params; 
+      let result;
+      if (userId) {
+        result = await getUserById(userId);
+      } else {
+        result = await users();
+      }
+      if (!result) {
+        res.status(404).send("Usuario no encontrado");
+      } else {
+        res.status(200).send(result);
+      }
     } catch (error) {
-        res.status(500).send(error)
+      res.status(500).send(error);
     }
-}
+  };
+
+
 
 const postUsers = async (req, res) => {
     const { name, surname, email, phone, password } = req.body

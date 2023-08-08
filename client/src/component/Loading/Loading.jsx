@@ -1,14 +1,13 @@
+// LoadingScreen.js
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './Loading.css'; 
 
-const LoadingSpinner = () => {
+const LoadingScreen = () => {
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-      <div className="spinner-border text-primary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
+    <div className="loading-screen">
+      <div className="loading-spinner"></div>
     </div>
   );
 };
 
-export default LoadingSpinner;
+export default LoadingScreen;
